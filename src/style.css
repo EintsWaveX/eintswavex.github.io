@@ -227,6 +227,10 @@ p:last-child{margin-bottom:0}
 .shots figure:hover{transform:translateY(-4px) scale(1.012);border-color:var(--accent);
   box-shadow:0 16px 40px color-mix(in srgb,var(--accent) 20%,transparent)}
 .shots img{width:100%;aspect-ratio:16/9;object-fit:cover;object-position:top center}
+/* Some captures are not 16 by 9. Cropping the waste sorter screenshots to it
+   would cut off the confidence bars and the run state, which are the whole
+   point of the picture, so those show at their own ratio instead. */
+.shots.wide img{aspect-ratio:1600/717;object-fit:contain;background:#0d0d0f}
 .shots figcaption{padding:9px 12px 11px;font-size:.74rem;color:var(--muted);
   border-top:1px solid var(--line);font-family:var(--mono)}
 
