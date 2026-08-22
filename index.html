@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Immanuel Aletheia</title>
 <meta name="description" content="Software engineer working across full-stack web, application development, and embedded systems. Bandung, Indonesia.">
-<meta name="theme-color" content="#fbfbf9">
+<meta name="theme-color" content="#07080b">
 <meta property="og:title" content="Immanuel Aletheia">
 <meta property="og:description" content="Software engineer working across full-stack web, application development, and embedded systems.">
 <meta property="og:type" content="website">
@@ -19,6 +19,9 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribu
 <body>
 
 <a class="skip" href="#main">Skip to content</a>
+
+<div class="aura" aria-hidden="true"><b></b><b></b><b></b></div>
+<div class="mesh" aria-hidden="true" data-par="-0.18"></div>
 
 <header class="nav">
   <div class="wrap nav-inner">
@@ -39,8 +42,8 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribu
 <main id="main">
 
 <section id="top" class="hero wrap">
-  <p class="eyebrow r">Bandung, Indonesia</p>
-  <h1 class="r d1">Immanuel Eben <span class="brk">Haezer Joseph Aletheia</span></h1>
+  <p class="eyebrow r"><span class="dot"></span> Bandung, Indonesia</p>
+  <h1 class="r d1">Immanuel Eben <span class="brk sheen">Haezer Joseph Aletheia</span></h1>
   <p class="lead r d2">
     Software engineer working across full-stack web, application development,
     and embedded systems. Currently building an asset-management platform for
@@ -62,42 +65,43 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribu
   </div>
 
   <article class="feature r">
-    <div class="feature-body">
-      <p class="kicker">Current focus</p>
-      <h3>RAMCES</h3>
-      <p class="feature-sub">Asset management and warehouse control for PT KAI's Track &amp; Bridge Division</p>
-      <p>
-        A full-stack platform tracking light work equipment across the national
-        rail network: gensets, drills, rail grinding machines, track geometry
-        trolleys. It covers registration, field condition reporting,
-        calibration, inter-region transfer, spare-part consumption, and
-        write-off, with role-scoped access so a regional admin sees their region
-        and head office sees everything.
-      </p>
-      <p>
-        I built the WebSocket live-update layer, JWT authentication across five
-        region-scoped roles, rate limiting, and the response-compression
-        middleware that cuts a 470 KB payload by roughly 8:1. I also refactored
-        the backend from a single 5,900-line file into eleven domain modules
-        holding a strict no-cyclic-imports rule.
-      </p>
-      <ul class="stats">
-        <li><b>92</b><span>API endpoints</span></li>
-        <li><b>16</b><span>database tables</span></li>
-        <li><b>39k</b><span>lines of code</span></li>
-        <li><b>2</b><span>developers</span></li>
-      </ul>
-      <ul class="tags">
-        <li>Python</li><li>FastAPI</li><li>PostgreSQL</li><li>WebSocket</li><li>JWT</li><li>JavaScript</li>
-      </ul>
-      <div class="links">
-        <a href="https://github.com/EintsWaveX/RAMCES_LightMachinery" target="_blank" rel="noopener">Repository</a>
+    <div class="feature-top">
+      <div class="feature-body">
+        <p class="kicker">Current focus</p>
+        <h3>RAMCES</h3>
+        <p class="feature-sub">Asset management and warehouse control for PT KAI's Track &amp; Bridge Division</p>
+        <p>
+          A full-stack platform tracking light work equipment across the national
+          rail network: gensets, drills, rail grinding machines, track geometry
+          trolleys. It covers registration, field condition reporting,
+          calibration, inter-region transfer, spare-part consumption, and
+          write-off, with role-scoped access so a regional admin sees their
+          region and head office sees everything.
+        </p>
+        <p>
+          I built the WebSocket live-update layer, JWT authentication across five
+          region-scoped roles, rate limiting, and the response-compression
+          middleware that cuts a 470 KB payload by roughly 8:1. I also refactored
+          the backend from a single 5,900-line file into eleven domain modules
+          holding a strict no-cyclic-imports rule.
+        </p>
+        <ul class="stats">
+          <li><b>92</b><span>API endpoints</span></li>
+          <li><b>16</b><span>database tables</span></li>
+          <li><b>39k</b><span>lines of code</span></li>
+          <li><b>2</b><span>developers</span></li>
+        </ul>
+        <ul class="tags">
+          <li>Python</li><li>FastAPI</li><li>PostgreSQL</li><li>WebSocket</li><li>JWT</li><li>JavaScript</li>
+        </ul>
+        <div class="links">
+          <a href="https://github.com/EintsWaveX/RAMCES_LightMachinery" target="_blank" rel="noopener">Repository</a>
+        </div>
       </div>
-    </div>
-    <div class="feature-side" aria-hidden="true">
-      <div class="term">
-        <div class="term-bar"><i></i><i></i><i></i></div>
-        <pre><span class="c1">main.py</span>          <span class="c2">app, middleware, sockets</span>
+      <div class="feature-side" aria-hidden="true">
+        <div class="term">
+          <div class="term-bar"><i></i><i></i><i></i></div>
+          <pre><span class="c1">main.py</span>          <span class="c2">app, middleware, sockets</span>
 <span class="c1">models.py</span>        <span class="c2">16 tables</span>
 <span class="c1">api/</span>
   deps.py        <span class="c2">auth, roles, region scope</span>
@@ -112,6 +116,26 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribu
 
 <span class="c3">#</span> <span class="c2">no module in api/ may import main,</span>
 <span class="c3">#</span> <span class="c2">main imports them all to mount routes</span></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery">
+      <h4>Running instance</h4>
+      <p class="cap">Captured from the application running locally against a seeded database of 1,121 assets across 58 locations.</p>
+      <div class="shots">
+        <figure>
+          <img src="./assets/shots/ramces-1.png" alt="Spare parts inventory dashboard with stock status and charts" loading="lazy" width="1400" height="788">
+          <figcaption>Inventory dashboard, stock status and movement</figcaption>
+        </figure>
+        <figure>
+          <img src="./assets/shots/ramces-2.png" alt="Asset register listing equipment with status badges" loading="lazy" width="1400" height="788">
+          <figcaption>Asset register, 1,121 records with filters and export</figcaption>
+        </figure>
+        <figure>
+          <img src="./assets/shots/ramces-3.png" alt="Asset history view showing repair and transfer records" loading="lazy" width="1400" height="788">
+          <figcaption>Audit trail, repair, calibration and transfer history</figcaption>
+        </figure>
       </div>
     </div>
   </article>
@@ -120,27 +144,68 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribu
 
     <article class="card r">
       <a class="shot" href="https://github.com/EintsWaveX/SkyNES" target="_blank" rel="noopener">
-        <img src="./assets/project/skynes.png" alt="SkyNES emulator running" loading="lazy" width="1920" height="1080">
+        <img src="./assets/project/skynes.png" alt="SkyNES" loading="lazy" width="1600" height="900">
       </a>
       <div class="card-body">
-        <h3><a href="https://github.com/EintsWaveX/SkyNES" target="_blank" rel="noopener">SkyNES</a></h3>
+        <h3><a href="https://github.com/EintsWaveX/SkyNES" target="_blank" rel="noopener">SkyNES</a> <span class="badge">CPU verified</span></h3>
         <p>
           A Nintendo Entertainment System emulator written from scratch in C++.
           The 6502 CPU core is verified byte for byte against the nestest golden
           reference trace across all 8,990 instructions, comparing every
-          register, flag, and cycle count at each step. Now being ported to a
-          custom ESP32-S3 handheld.
+          register, flag, and cycle count at each step. The PPU renders
+          background tiles; sprites, full scroll, and on-device video output are
+          still in progress.
         </p>
         <ul class="tags"><li>C++</li><li>6502</li><li>PPU</li><li>ESP32-S3</li></ul>
+      </div>
+      <div class="gallery">
+        <h4>Verification output</h4>
+        <p class="cap">The desktop harness, run for this page. Video output does not render yet, so there is no gameplay capture to show.</p>
+        <div class="shots" style="grid-template-columns:1fr">
+          <figure>
+            <img src="./assets/shots/skynes-1.png" alt="Terminal output showing all 8,990 CPU steps matching the reference trace" loading="lazy" width="1400" height="542">
+            <figcaption>8,990 steps compared against nestest, all matching</figcaption>
+          </figure>
+        </div>
+      </div>
+    </article>
+
+    <article class="card r">
+      <a class="shot" href="https://web-pengmas.vercel.app/" target="_blank" rel="noopener">
+        <img src="./assets/project/air-quality.png" alt="Air Quality Monitoring" loading="lazy" width="1600" height="900">
+      </a>
+      <div class="card-body">
+        <h3><a href="https://web-pengmas.vercel.app/" target="_blank" rel="noopener">Air Quality Monitoring</a> <span class="live">Live</span></h3>
+        <p>
+          A public web dashboard rendering live readings from a five-sensor
+          air-quality station in Sindangkerta village, streamed from the field
+          devices through a realtime database. Delivered as a completed
+          community-service initiative, and still serving the village today.
+        </p>
+        <ul class="tags"><li>JavaScript</li><li>Vercel</li><li>Firebase</li><li>ESP32</li></ul>
+      </div>
+      <div class="gallery">
+        <h4>Live site</h4>
+        <p class="cap">Captured from the deployed dashboard, showing readings from the station as they arrived.</p>
+        <div class="shots two">
+          <figure>
+            <img src="./assets/shots/aqms-1.png" alt="Air quality dashboard showing five sensor cards with live readings" loading="lazy" width="1400" height="788">
+            <figcaption>Five sensors, live readings and status</figcaption>
+          </figure>
+          <figure>
+            <img src="./assets/shots/aqms-2.png" alt="The same dashboard on a narrow phone viewport" loading="lazy" width="1400" height="788">
+            <figcaption>The same dashboard on a phone</figcaption>
+          </figure>
+        </div>
       </div>
     </article>
 
     <article class="card r">
       <a class="shot" href="https://github.com/EintsWaveX/SmartRackMonitoring" target="_blank" rel="noopener">
-        <img src="./assets/project/smart-rack.png" alt="Smart rack monitoring dashboard" loading="lazy" width="1920" height="1080">
+        <img src="./assets/project/smart-rack.png" alt="Smart Rack Monitoring" loading="lazy" width="1600" height="900">
       </a>
       <div class="card-body">
-        <h3><a href="https://github.com/EintsWaveX/SmartRackMonitoring" target="_blank" rel="noopener">Smart Rack Monitoring</a></h3>
+        <h3><a href="https://github.com/EintsWaveX/SmartRackMonitoring" target="_blank" rel="noopener">Smart Rack Monitoring</a> <span class="badge">Hardware</span></h3>
         <p>
           Both firmware halves of a dual-ESP32 industrial rack monitor, built as
           a capstone project. An ESP32-S3 drives a 480 by 320 LVGL touchscreen
@@ -154,10 +219,10 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribu
 
     <article class="card r">
       <a class="shot" href="https://github.com/EintsWaveX/IWSS_EL4705-04_IoTxAI" target="_blank" rel="noopener">
-        <img src="./assets/project/iwss.png" alt="Intelligent waste sorting system" loading="lazy" width="1920" height="1080">
+        <img src="./assets/project/iwss.png" alt="Intelligent Waste Sorting" loading="lazy" width="1600" height="900">
       </a>
       <div class="card-body">
-        <h3><a href="https://github.com/EintsWaveX/IWSS_EL4705-04_IoTxAI" target="_blank" rel="noopener">Intelligent Waste Sorting</a></h3>
+        <h3><a href="https://github.com/EintsWaveX/IWSS_EL4705-04_IoTxAI" target="_blank" rel="noopener">Intelligent Waste Sorting</a> <span class="badge">Hardware</span></h3>
         <p>
           A lightweight convolutional network, quantized to eight-bit integers
           and run on an ESP32-CAM, classifies plastic, paper, and metal from a
@@ -170,27 +235,11 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribu
     </article>
 
     <article class="card r">
-      <a class="shot" href="https://web-pengmas.vercel.app/" target="_blank" rel="noopener">
-        <img src="./assets/project/air-quality.png" alt="Air quality dashboard for Sindangkerta" loading="lazy" width="1920" height="1080">
-      </a>
-      <div class="card-body">
-        <h3><a href="https://web-pengmas.vercel.app/" target="_blank" rel="noopener">Air Quality Monitoring</a> <span class="live">Live</span></h3>
-        <p>
-          A public web dashboard rendering live readings from a five-sensor
-          air-quality station in Sindangkerta village, streamed from the field
-          devices through a realtime database. Delivered as a completed
-          community-service initiative, and still serving the village today.
-        </p>
-        <ul class="tags"><li>JavaScript</li><li>Vercel</li><li>Firebase</li><li>ESP32</li></ul>
-      </div>
-    </article>
-
-    <article class="card r">
       <a class="shot" href="https://github.com/EintsWaveX/EL4705_09_TugasBesarSNAxSKD" target="_blank" rel="noopener">
-        <img src="./assets/project/pid.png" alt="PID temperature control interface" loading="lazy" width="1920" height="1080">
+        <img src="./assets/project/pid.png" alt="PID Climate Control" loading="lazy" width="1600" height="900">
       </a>
       <div class="card-body">
-        <h3><a href="https://github.com/EintsWaveX/EL4705_09_TugasBesarSNAxSKD" target="_blank" rel="noopener">PID Climate Control</a></h3>
+        <h3><a href="https://github.com/EintsWaveX/EL4705_09_TugasBesarSNAxSKD" target="_blank" rel="noopener">PID Climate Control</a> <span class="badge">Hardware</span></h3>
         <p>
           A closed-loop temperature and humidity controller for a humidified
           enclosure. A reverse-acting PID loop modulates a fan blower against a
@@ -204,7 +253,7 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribu
 
     <article class="card r">
       <a class="shot" href="https://github.com/EintsWaveX/FinancialAM" target="_blank" rel="noopener">
-        <img src="./assets/project/financialam.png" alt="FinancialAM console application" loading="lazy" width="1920" height="1080">
+        <img src="./assets/project/financialam.png" alt="FinancialAM" loading="lazy" width="1600" height="900">
       </a>
       <div class="card-body">
         <h3><a href="https://github.com/EintsWaveX/FinancialAM" target="_blank" rel="noopener">FinancialAM</a></h3>
@@ -226,7 +275,6 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribu
     <span class="label">02</span>
     <h2>Experience</h2>
   </div>
-
   <ol class="timeline">
     <li class="r">
       <div class="when">Jul 2026, now</div>
@@ -278,7 +326,7 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribu
   </dl>
 </section>
 
-<section id="contact" class="wrap sect contact">
+<section id="contact" class="wrap sect">
   <div class="sect-head r">
     <span class="label">04</span>
     <h2>Get in touch</h2>

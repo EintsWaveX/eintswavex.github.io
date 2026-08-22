@@ -1,19 +1,23 @@
-/* Personal site behaviour: theme toggle, scroll reveal, nav border. */
+/* Personal site behaviour: theme, scroll reveal, parallax, nav hairline.
+   Every effect is skipped when the visitor prefers reduced motion, and the
+   page is fully readable with JavaScript disabled. */
 (function () {
   'use strict';
 
-  /* ---- theme ------------------------------------------------------------
-     The inline script in <head> has already applied any stored preference,
-     which avoids a flash of the wrong theme. This only handles the toggle.
-     With no stored value the page follows the system setting, so the first
-     click has to resolve what is actually on screen before flipping it.     */
   var root = document.documentElement;
+  var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- theme -----------------------------------------------------------
+     The inline script in <head> applies any stored choice before paint, so
+     there is no flash. With nothing stored the page follows the system, so
+     the first click has to resolve what is actually on screen before it
+     flips, otherwise the button appears to do nothing.                     */
   var btn = document.getElementById('theme');
 
   function current() {
     var set = root.getAttribute('data-theme');
     if (set) return set;
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
   }
 
   if (btn) {
@@ -21,42 +25,50 @@
       var next = current() === 'dark' ? 'light' : 'dark';
       root.setAttribute('data-theme', next);
       var meta = document.querySelector('meta[name="theme-color"]');
-      if (meta) meta.setAttribute('content', next === 'dark' ? '#0b0b0d' : '#fbfbf9');
+      if (meta) meta.setAttribute('content', next === 'dark' ? '#07080b' : '#fbfbf9');
       try { localStorage.setItem('theme', next); } catch (e) { /* private mode */ }
     });
   }
 
-  /* ---- scroll reveal ----------------------------------------------------
-     Everything carrying .r starts faded; IntersectionObserver adds .in once.
-     If the API is missing, or the visitor prefers reduced motion, show all
-     of it immediately rather than leaving the page blank.                   */
+  /* ---- scroll reveal --------------------------------------------------- */
   var items = document.querySelectorAll('.r');
-  var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
   if (!('IntersectionObserver' in window) || still) {
     for (var i = 0; i < items.length; i++) items[i].classList.add('in');
   } else {
     var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in');
-          io.unobserve(entry.target);
-        }
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
       });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
-
+    }, { rootMargin: '0px 0px -7% 0px', threshold: 0.05 });
     items.forEach(function (el) { io.observe(el); });
   }
 
-  /* ---- nav hairline -----------------------------------------------------
-     The sticky bar is borderless over the hero and gains a hairline once the
-     page scrolls, so it separates from content without boxing in the top.   */
+  /* ---- parallax --------------------------------------------------------
+     One rAF-throttled scroll handler drives every parallax layer. Reading
+     scrollY once per frame and writing transforms afterwards keeps this off
+     the layout path; per-element scroll listeners would thrash it.         */
+  var layers = [].slice.call(document.querySelectorAll('[data-par]'));
   var nav = document.querySelector('.nav');
-  if (nav) {
-    var onScroll = function () {
-      nav.classList.toggle('stuck', window.scrollY > 8);
-    };
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
+  var ticking = false;
+
+  function frame() {
+    var y = window.scrollY || window.pageYOffset;
+    if (nav) nav.classList.toggle('stuck', y > 8);
+    if (!still) {
+      for (var i = 0; i < layers.length; i++) {
+        var el = layers[i];
+        var k = parseFloat(el.getAttribute('data-par')) || 0;
+        el.style.transform = 'translate3d(0,' + (y * k).toFixed(2) + 'px,0)';
+      }
+    }
+    ticking = false;
   }
+
+  function onScroll() {
+    if (!ticking) { ticking = true; window.requestAnimationFrame(frame); }
+  }
+
+  frame();
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
 }());
