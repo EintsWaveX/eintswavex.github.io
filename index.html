@@ -152,15 +152,15 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribu
           A Nintendo Entertainment System emulator written from scratch in C++.
           The 6502 CPU core is verified byte for byte against the nestest golden
           reference trace across all 8,990 instructions, comparing every
-          register, flag, and cycle count at each step. The PPU renders
-          background tiles; sprites, full scroll, and on-device video output are
-          still in progress.
+          register, flag, and cycle count at each step. The PPU pipeline runs
+          end to end; sprites and full scroll are not finished, and the handheld
+          it targets is not assembled yet.
         </p>
         <ul class="tags"><li>C++</li><li>6502</li><li>PPU</li><li>ESP32-S3</li></ul>
       </div>
       <div class="gallery">
         <h4>Verification output</h4>
-        <p class="cap">The desktop harness, run for this page. Video output does not render yet, so there is no gameplay capture to show.</p>
+        <p class="cap">The desktop harness, run for this page. There is no gameplay capture because the repository ships only the freeware nestest CPU-test ROM, which draws a blank screen by design.</p>
         <div class="shots" style="grid-template-columns:1fr">
           <figure>
             <img src="./assets/shots/skynes-1.png" alt="Terminal output showing all 8,990 CPU steps matching the reference trace" loading="lazy" width="1400" height="542">
