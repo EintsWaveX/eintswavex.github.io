@@ -145,7 +145,8 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribu
           Both firmware halves of a dual-ESP32 industrial rack monitor, built as
           a capstone project. An ESP32-S3 drives a 480 by 320 LVGL touchscreen
           dashboard; a sensor node reads four load cells, one per rack footing,
-          plus an inertial measurement unit over UART.
+          plus an inertial measurement unit over UART. Loads above 200 kg are
+          resolved to within 1 kg per cell, roughly 4 kg across the rack.
         </p>
         <ul class="tags"><li>C++</li><li>LVGL</li><li>HX711</li><li>UART</li></ul>
       </div>
