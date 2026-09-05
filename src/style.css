@@ -1,71 +1,153 @@
 /* =========================================================================
    Immanuel Aletheia, Personal Site & Portfolio
-   Modern design system with Bento spotlight borders, engineering grid,
-   accessible dark and light themes, and responsive layout.
+
+   Design idea: an observation deck. Night sky above, aurora at the horizon
+   line along the bottom of the viewport, content floating over it as
+   instrument panels. Atmosphere lives behind the content; structure stays
+   legible, so body copy always sits on a solid panel at full contrast.
+
    No em dashes and no en dashes used anywhere.
    ========================================================================= */
 
+/* -------------------------------------------------------------------------
+   Tokens
+   ------------------------------------------------------------------------- */
+
 :root {
-  --bg: #080a0f;
-  --bg-subtle: #0d1118;
-  --panel: #111622;
-  --panel-elevated: #171f30;
-  --ink: #f1f5f9;
-  --ink-secondary: #94a3b8;
-  --muted: #7d8b9f;
-  --border: #1e293b;
-  --border-highlight: #334155;
-  --accent: #3b82f6;
-  --accent-hover: #60a5fa;
-  --accent-glow: rgba(59, 130, 246, 0.22);
-  --accent-cyan: #06b6d4;
-  --emerald: #10b981;
-  --emerald-glow: rgba(16, 185, 129, 0.2);
-  --radius-sm: 8px;
-  --radius: 16px;
-  --radius-lg: 24px;
+  /* Deep space. Panels sit a real luminance step above the ground so cards
+     read as objects on the page rather than tinted regions of it. */
+  --bg: #05060f;
+  --bg-subtle: #0a0d1c;
+  --panel: #0f1428;
+  --panel-elevated: #171e3a;
+  --ink: #eef2ff;
+  --ink-secondary: #a5b4d4;
+  --muted: #7d8bb0;
+  --border: #1e2647;
+  --border-highlight: #38427a;
+
+  /* Aurora palette. Magenta is a sweep colour only, never a UI surface. */
+  --aurora-violet: #8b5cf6;
+  --aurora-cyan: #38bdf8;
+  --aurora-teal: #2dd4bf;
+  --aurora-magenta: #e879f9;
+
+  /* Small-text sweep, kept separate from the display sweep: tiny type needs
+     contrast the full aurora range cannot hold. */
+  --sweep-a: #67e8f9;
+  --sweep-b: #c4b5fd;
+
+  /* Badge hues live in the theme so the badge rule stays theme-agnostic. */
+  --badge-teal: #2dd4bf;
+  --badge-sky: #38bdf8;
+  --badge-neutral: #a5b4d4;
+
+  /* Semantic aliases. Existing rules address these names. */
+  --accent: #8b5cf6;
+  --accent-hover: #a78bfa;
+  /* Links sit on --panel, which is lighter than the page ground, and --accent
+     only reaches 4.31:1 there. This is the same hue, lifted until it passes. */
+  --link: #a78bfa;
+  --accent-glow: rgba(139, 92, 246, 0.24);
+  --accent-cyan: #38bdf8;
+  --emerald: #2dd4bf;
+  --emerald-glow: rgba(45, 212, 191, 0.2);
+
+  /* One lift and one ring, shared by every interactive surface. */
+  --glow-ring: 0 0 0 3px var(--accent-glow);
+  --shadow-lift: 0 10px 30px -12px rgba(2, 3, 12, 0.85);
+  --shadow-card: 0 1px 2px rgba(2, 3, 12, 0.45);
+
+  /* Radius encodes elevation: controls, cards, hero surfaces. */
+  --radius-sm: 10px;
+  --radius: 14px;
+  --radius-lg: 20px;
+
+  /* Free to run the whole hue circle: nothing sits on top of a border. */
+  --rainbow-glow: linear-gradient(100deg,
+    #38bdf8, #8b5cf6, #e879f9, #fb7185, #fbbf24, #2dd4bf, #38bdf8);
+  /* Deliberately held to dark, saturated hues. This one sits behind white
+     button labels, and every stop has to stay legible under them. */
+  --rainbow-solid: linear-gradient(100deg,
+    #6d28d9, #86198f, #9f1239, #115e59, #1d4ed8, #6d28d9);
+
   --maxw: 1160px;
+  --display: "Archivo", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   color-scheme: dark;
 }
 
+/* High-altitude day sky. Same structure, dawn-side hues, aurora reduced to
+   a wash rather than a light source. */
 :root[data-theme="light"] {
-  --bg: #f8fafc;
-  --bg-subtle: #f1f5f9;
+  --bg: #f6f8ff;
+  --bg-subtle: #eef2fb;
   --panel: #ffffff;
-  --panel-elevated: #f8fafc;
-  --ink: #0f172a;
-  --ink-secondary: #334155;
-  --muted: #5b6a7f;
-  --border: #e2e8f0;
-  --border-highlight: #cbd5e1;
-  --accent: #2563eb;
-  --accent-hover: #1d4ed8;
-  --accent-glow: rgba(37, 99, 235, 0.16);
-  --accent-cyan: #0891b2;
-  --emerald: #059669;
-  --emerald-glow: rgba(5, 150, 105, 0.16);
+  --panel-elevated: #f8faff;
+  --ink: #0b1020;
+  --ink-secondary: #33406b;
+  --muted: #55618a;
+  --border: #dde3f5;
+  --border-highlight: #bcc6e6;
+  --aurora-violet: #6d28d9;
+  --aurora-cyan: #0284c7;
+  --aurora-teal: #0d9488;
+  --aurora-magenta: #c026d3;
+  --sweep-a: #0369a1;
+  --sweep-b: #5b21b6;
+  --badge-teal: #0f766e;
+  --badge-sky: #0369a1;
+  --badge-neutral: #475569;
+  --accent: #6d28d9;
+  --accent-hover: #5b21b6;
+  --link: #6d28d9;
+  --accent-glow: rgba(109, 40, 217, 0.16);
+  /* #0284c7 reads 4.10:1 on white, and every use of this token is small
+     uppercase label text, so it has to clear 4.5 rather than 3.0. */
+  --accent-cyan: #0369a1;
+  --emerald: #0f766e;
+  --emerald-glow: rgba(15, 118, 110, 0.16);
+  --glow-ring: 0 0 0 3px var(--accent-glow);
+  --rainbow-glow: linear-gradient(100deg,
+    #0284c7, #6d28d9, #c026d3, #e11d48, #ca8a04, #0d9488, #0284c7);
+  --shadow-lift: 0 10px 30px -12px rgba(15, 23, 60, 0.22);
+  --shadow-card: 0 1px 2px rgba(15, 23, 60, 0.06);
   color-scheme: light;
 }
 
 @media (prefers-color-scheme: light) {
   :root:not([data-theme="dark"]):not([data-theme="light"]) {
-    --bg: #f8fafc;
-    --bg-subtle: #f1f5f9;
+    --bg: #f6f8ff;
+    --bg-subtle: #eef2fb;
     --panel: #ffffff;
-    --panel-elevated: #f8fafc;
-    --ink: #0f172a;
-    --ink-secondary: #334155;
-    --muted: #5b6a7f;
-    --border: #e2e8f0;
-    --border-highlight: #cbd5e1;
-    --accent: #2563eb;
-    --accent-hover: #1d4ed8;
-    --accent-glow: rgba(37, 99, 235, 0.16);
-    --accent-cyan: #0891b2;
-    --emerald: #059669;
-    --emerald-glow: rgba(5, 150, 105, 0.16);
+    --panel-elevated: #f8faff;
+    --ink: #0b1020;
+    --ink-secondary: #33406b;
+    --muted: #55618a;
+    --border: #dde3f5;
+    --border-highlight: #bcc6e6;
+    --aurora-violet: #6d28d9;
+    --aurora-cyan: #0284c7;
+    --aurora-teal: #0d9488;
+    --aurora-magenta: #c026d3;
+    --sweep-a: #0369a1;
+    --sweep-b: #5b21b6;
+    --badge-teal: #0f766e;
+    --badge-sky: #0369a1;
+    --badge-neutral: #475569;
+    --accent: #6d28d9;
+    --accent-hover: #5b21b6;
+    --link: #6d28d9;
+    --accent-glow: rgba(109, 40, 217, 0.16);
+    --accent-cyan: #0369a1;
+    --emerald: #0f766e;
+    --emerald-glow: rgba(15, 118, 110, 0.16);
+    --glow-ring: 0 0 0 3px var(--accent-glow);
+    --rainbow-glow: linear-gradient(100deg,
+      #0284c7, #6d28d9, #c026d3, #e11d48, #ca8a04, #0d9488, #0284c7);
+    --shadow-lift: 0 10px 30px -12px rgba(15, 23, 60, 0.22);
+    --shadow-card: 0 1px 2px rgba(15, 23, 60, 0.06);
     color-scheme: light;
   }
 }
@@ -76,12 +158,18 @@
 
 html {
   -webkit-text-size-adjust: 100%;
-  scroll-behavior: smooth;
   overflow-x: hidden;
 }
 
+/* Lenis drives scrolling. CSS smooth-scroll fights it, so anchors are
+   routed through lenis.scrollTo() in script.js instead. When Lenis is not
+   running (no JS, or reduced motion) the browser default applies. */
+html:not(.lenis) {
+  scroll-behavior: smooth;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
+  html:not(.lenis) { scroll-behavior: auto; }
 }
 
 body {
@@ -115,6 +203,14 @@ h1, h2, h3, h4 {
   margin: 0;
   font-weight: 650;
   overflow-wrap: break-word;
+}
+
+/* Archivo is set wide. It reads as signage and instrument lettering, which
+   is the register the rest of the page is speaking in. */
+h1, h2 {
+  font-family: var(--display);
+  font-stretch: 112%;
+  font-weight: 750;
 }
 
 p {
@@ -154,38 +250,240 @@ p:last-child {
   border-radius: var(--radius-sm);
 }
 
-/* Engineering Micro-Grid & Ambient Vignette */
+/* -------------------------------------------------------------------------
+   Sky: star field above, aurora at the horizon
+   ------------------------------------------------------------------------- */
+
+/* The grid fades downward rather than stopping mid-page, so the star field
+   hands off to the aurora instead of ending in open space. */
 .bg-grid {
   position: fixed;
   inset: 0;
-  z-index: -2;
+  z-index: -3;
   pointer-events: none;
-  background-image: radial-gradient(circle at 1px 1px, var(--border) 1px, transparent 0);
-  background-size: 36px 36px;
-  opacity: 0.55;
-  mask-image: radial-gradient(ellipse 85% 65% at 50% 18%, #000 35%, transparent 85%);
-  -webkit-mask-image: radial-gradient(ellipse 85% 65% at 50% 18%, #000 35%, transparent 85%);
+  background-image: radial-gradient(circle at 1px 1px, var(--border-highlight) 1px, transparent 0);
+  background-size: 38px 38px;
+  opacity: 0.5;
+  mask-image: linear-gradient(to bottom, #000 0%, #000 42%, rgba(0, 0, 0, 0.3) 74%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 42%, rgba(0, 0, 0, 0.3) 74%, transparent 100%);
 }
 
-.bg-ambient {
+/* The WebGL sky, when it runs, draws both the stars and the aurora curtains.
+   It is hidden until a frame has actually rendered, and the CSS layers below
+   stay in place until then, so a failure at any point leaves a working page.
+   Daylight and reduced motion never turn it on. */
+.sky {
   position: fixed;
   inset: 0;
-  z-index: -1;
+  /* A canvas is a replaced element: with width auto it lays out at its
+     intrinsic size, which is the backing store, and the over-constrained
+     right/bottom from inset are ignored. Without these the canvas rendered
+     at viewport * devicePixelRatio, so on any DPR above 1 the sky was drawn
+     oversized and cropped, putting the sun off screen. */
+  width: 100%;
+  height: 100%;
+  z-index: -2;
   pointer-events: none;
-  overflow: hidden;
+  display: none;
+  opacity: 0;
+  transition: opacity 1.2s ease;
 }
 
-.bg-ambient::before {
-  content: "";
+html.sky-on .sky {
+  display: block;
+}
+
+html.sky-on .sky.lit {
+  opacity: 1;
+}
+
+/* The canvas covers both jobs, so the CSS stand-ins step aside rather than
+   double up with it. */
+html.sky-on .bg-grid,
+html.sky-on .aurora {
+  display: none;
+}
+
+@media (forced-colors: active) {
+  .sky { display: none !important; }
+}
+
+/* The star field drifts up as the page scrolls while the aurora stays put,
+   which is how a horizon actually behaves: it is the fixed reference and the
+   sky moves against it.
+
+   Scroll-driven, so it runs on the compositor with no scroll listener and no
+   JavaScript at all. The `translate` property is used rather than `transform`
+   so it composes with any transform the element carries instead of replacing
+   it. Where animation-timeline is unsupported the stars simply hold still,
+   which needs no fallback code. */
+@keyframes star-drift {
+  to { translate: 0 -80px; }
+}
+
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .bg-grid {
+      animation: star-drift linear both;
+      animation-timeline: scroll(root block);
+    }
+  }
+}
+
+/* Pinned to the bottom of the viewport because that is where the horizon is.
+   The mask feathers the top edge so the glow rises into the page instead of
+   ending on a line. */
+.aurora {
+  position: fixed;
+  inset: auto 0 0 0;
+  height: min(52vh, 560px);
+  z-index: -2;
+  pointer-events: none;
+  overflow: hidden;
+  contain: layout paint style;
+  mask-image: linear-gradient(to top, #000 0%, #000 34%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to top, #000 0%, #000 34%, transparent 100%);
+}
+
+/* Screen blending inside the layer means overlapping bands brighten into
+   each other the way real aurora does. Only transform and opacity animate,
+   so the whole thing stays on the compositor and costs nothing on scroll. */
+.aurora-band {
   position: absolute;
-  top: -140px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 750px;
-  height: 460px;
-  background: radial-gradient(ellipse 60% 50% at 50% 50%, var(--accent-glow) 0%, transparent 70%);
-  filter: blur(60px);
-  opacity: 0.8;
+  bottom: -34%;
+  height: 132%;
+  border-radius: 50%;
+  mix-blend-mode: screen;
+  will-change: transform, opacity;
+}
+
+.aurora-band-1 {
+  left: -14%;
+  width: 74%;
+  background: radial-gradient(ellipse 52% 50% at 50% 50%, var(--aurora-teal) 0%, transparent 68%);
+  filter: blur(84px);
+  opacity: 0.4;
+  animation: aurora-drift-1 37s ease-in-out infinite;
+}
+
+.aurora-band-2 {
+  left: 18%;
+  width: 82%;
+  background: radial-gradient(ellipse 50% 50% at 50% 50%, var(--aurora-violet) 0%, transparent 70%);
+  filter: blur(100px);
+  opacity: 0.44;
+  animation: aurora-drift-2 53s ease-in-out infinite;
+}
+
+.aurora-band-3 {
+  left: -4%;
+  width: 96%;
+  background: radial-gradient(ellipse 46% 44% at 50% 50%, var(--aurora-cyan) 0%, transparent 72%);
+  filter: blur(110px);
+  opacity: 0.3;
+  animation: aurora-drift-3 71s ease-in-out infinite;
+}
+
+/* Co-prime durations, so the three bands never resync into a visible loop. */
+@keyframes aurora-drift-1 {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.4; }
+  34%      { transform: translate3d(16%, -7%, 0) scale(1.2); opacity: 0.52; }
+  67%      { transform: translate3d(-11%, 3%, 0) scale(0.92); opacity: 0.32; }
+}
+
+@keyframes aurora-drift-2 {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1.04); opacity: 0.44; }
+  38%      { transform: translate3d(-19%, 5%, 0) scale(0.9); opacity: 0.3; }
+  71%      { transform: translate3d(9%, -8%, 0) scale(1.24); opacity: 0.54; }
+}
+
+@keyframes aurora-drift-3 {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(0.96); opacity: 0.3; }
+  42%      { transform: translate3d(13%, 6%, 0) scale(1.16); opacity: 0.44; }
+  78%      { transform: translate3d(-15%, -4%, 0) scale(1.02); opacity: 0.26; }
+}
+
+/* Daylight: a dawn wash, not a light source. Screen blending on a white
+   ground washes the bands out to nothing, so they stack normally instead. */
+:root[data-theme="light"] .aurora-band {
+  mix-blend-mode: normal;
+}
+
+:root[data-theme="light"] .aurora-band-1 { opacity: 0.2; }
+:root[data-theme="light"] .aurora-band-2 { opacity: 0.22; }
+:root[data-theme="light"] .aurora-band-3 { opacity: 0.16; }
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]):not([data-theme="light"]) .aurora-band {
+    mix-blend-mode: normal;
+  }
+  :root:not([data-theme="dark"]):not([data-theme="light"]) .aurora-band-1 { opacity: 0.2; }
+  :root:not([data-theme="dark"]):not([data-theme="light"]) .aurora-band-2 { opacity: 0.22; }
+  :root:not([data-theme="dark"]):not([data-theme="light"]) .aurora-band-3 { opacity: 0.16; }
+}
+
+/* -------------------------------------------------------------------------
+   The sweep: one keyframe behind every flowing-gradient moment on the page
+   ------------------------------------------------------------------------- */
+
+/* First and last stop are the same colour and the image tiles, so shifting
+   by exactly one image width returns to an identical frame. No seam. */
+@keyframes aurora-sweep {
+  from { background-position: 0% center; }
+  to   { background-position: 200% center; }
+}
+
+.aurora-text,
+.sect-num,
+.sect-head h2,
+.stat-val,
+.nav-name > span:not(.nav-tag),
+.status-badge > span:not(.pulse-dot) {
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: aurora-sweep 9s linear infinite;
+}
+
+/* Display sweep: the full aurora range, only ever on large type. */
+.aurora-text,
+.sect-head h2 {
+  background-image: linear-gradient(
+    100deg,
+    var(--aurora-cyan) 0%,
+    var(--aurora-violet) 25%,
+    var(--aurora-magenta) 50%,
+    var(--aurora-teal) 75%,
+    var(--aurora-cyan) 100%
+  );
+}
+
+/* Small type gets a two-colour sweep instead. The full range dips below the
+   contrast a 0.8rem label needs, particularly in daylight. */
+.sect-num,
+.nav-name > span:not(.nav-tag),
+.status-badge > span:not(.pulse-dot) {
+  background-image: linear-gradient(
+    100deg,
+    var(--sweep-a) 0%,
+    var(--sweep-b) 50%,
+    var(--sweep-a) 100%
+  );
+  animation-duration: 16s;
+}
+
+/* Slower and narrower again for the figures. Glance-readability is the one
+   job those numbers have, so the gradient stays out of their way. */
+.stat-val {
+  background-image: linear-gradient(
+    100deg,
+    var(--aurora-cyan) 0%,
+    var(--aurora-violet) 50%,
+    var(--aurora-cyan) 100%
+  );
+  animation-duration: 14s;
 }
 
 /* Header & Navigation */
@@ -202,6 +500,27 @@ p:last-child {
 
 .nav.stuck {
   border-bottom-color: var(--border);
+}
+
+.nav.stuck::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  pointer-events: none;
+  background-image: linear-gradient(
+    100deg,
+    transparent 0%,
+    var(--aurora-cyan) 25%,
+    var(--aurora-violet) 50%,
+    var(--aurora-magenta) 75%,
+    transparent 100%
+  );
+  background-size: 200% auto;
+  opacity: 0.75;
+  animation: aurora-sweep 12s linear infinite;
 }
 
 .nav-inner {
@@ -280,16 +599,17 @@ p:last-child {
   height: 38px;
   flex: none;
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: var(--radius-sm);
   background: var(--panel);
   color: var(--ink-secondary);
   cursor: pointer;
-  transition: border-color 0.2s, color 0.2s, transform 0.15s;
+  transition: border-color 0.2s, color 0.2s, transform 0.15s, box-shadow 0.2s;
 }
 
 .menu-btn:hover {
   color: var(--ink);
-  border-color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+  box-shadow: var(--glow-ring);
 }
 
 .menu-btn .i-close { display: none; }
@@ -327,7 +647,7 @@ p:last-child {
   height: 38px;
   flex: none;
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: var(--radius-sm);
   background: var(--panel);
   color: var(--ink-secondary);
   cursor: pointer;
@@ -336,8 +656,8 @@ p:last-child {
 
 .theme-btn:hover {
   color: var(--ink);
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px var(--accent-glow);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+  box-shadow: var(--glow-ring);
 }
 
 .theme-btn:active {
@@ -398,9 +718,9 @@ p:last-child {
 }
 
 @keyframes pulse-emerald {
-  0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-  70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--emerald) 70%, transparent); }
+  70% { box-shadow: 0 0 0 10px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
 }
 
 .hero h1 {
@@ -411,14 +731,11 @@ p:last-child {
   line-height: 1.1;
 }
 
+/* Wrapping behaviour only. The sweep above does the painting. */
 .hero-gradient {
   display: inline-block;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
-  background: linear-gradient(135deg, var(--ink) 30%, var(--accent) 70%, var(--accent-cyan) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
 }
 
 .lead {
@@ -449,13 +766,16 @@ p:last-child {
 }
 
 /* Button System */
+/* Every interactive surface lifts the same way: same translate, same ring,
+   same shadow. The buttons, the theme toggle, the menu button and the filter
+   pills used to disagree about all three. */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   padding: 11px 20px;
-  border-radius: 12px;
+  border-radius: var(--radius-sm);
   border: 1px solid var(--border);
   background: var(--panel);
   color: var(--ink);
@@ -469,32 +789,153 @@ p:last-child {
 
 .btn:hover {
   transform: translateY(-2px);
-  border-color: var(--border-highlight);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
   background: var(--panel-elevated);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  box-shadow: var(--shadow-lift), var(--glow-ring);
 }
 
 .btn:active {
   transform: translateY(0);
 }
 
+/* The resting gradient is held to hues dark enough for white text. The
+   previous violet-to-cyan ramp measured 2.16:1 at the cyan end, which is
+   nowhere near legible for a label. */
 .btn-primary {
-  background: linear-gradient(135deg, var(--accent), var(--accent-cyan));
+  background: linear-gradient(135deg, #6d28d9, #1d4ed8 55%, #0e7490);
   color: #ffffff;
   border-color: transparent;
   font-weight: 600;
   box-shadow: 0 4px 16px var(--accent-glow);
 }
 
+/* Case two: the border is dark or absent, so the fill itself is what glows.
+   Swapping background-image cannot be transitioned, because gradients do not
+   interpolate, which is why the colour used to snap in. A second gradient
+   layer is faded over the first instead, so it arrives rather than jumps. */
+.btn-primary::before,
+.filter-btn.active::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background-image: var(--rainbow-solid);
+  background-size: 200% auto;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  pointer-events: none;
+}
+
+.btn-primary:hover::before,
+.btn-primary:focus-visible::before,
+.filter-btn.active:hover::before,
+.filter-btn.active:focus-visible::before {
+  opacity: 1;
+  animation: aurora-sweep 2.6s linear infinite;
+}
+
+/* The label has to outrank the overlay in paint order. */
+.btn-primary > *,
+.filter-btn > * {
+  position: relative;
+  z-index: 1;
+}
+
 .btn-primary:hover {
-  background: linear-gradient(135deg, var(--accent-hover), var(--accent-cyan));
-  box-shadow: 0 8px 26px color-mix(in srgb, var(--accent) 45%, transparent);
+  box-shadow: var(--shadow-lift), 0 0 0 3px color-mix(in srgb, var(--accent) 35%, transparent);
 }
 
 .btn-sm {
   padding: 8px 14px;
   font-size: 0.84rem;
-  border-radius: 10px;
+  border-radius: var(--radius-sm);
+}
+
+/* Cosmic hover glow, in the two cases the brief calls for.
+
+   Case one, here: the control already has a dark fill, so the ring around it
+   is what lights up. The gradient is painted into a one-pixel frame using
+   mask-composite, which is the same trick the card spotlight uses. Nothing
+   sits on top of a border, so this one is free to use the full hue circle. */
+.btn:not(.btn-primary),
+.theme-btn,
+.menu-btn,
+.filter-btn,
+.status-badge,
+.tags li,
+.badge,
+.carousel-caption {
+  position: relative;
+}
+
+.btn:not(.btn-primary)::after,
+.theme-btn::after,
+.menu-btn::after,
+.filter-btn:not(.active)::after,
+.bento-card::after,
+.stack-group::after,
+.contact-box::after,
+.shot-frame::after,
+.status-badge::after,
+.tags li::after,
+.badge::after,
+.carousel-caption::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background-image: var(--rainbow-glow);
+  background-size: 200% auto;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+
+.btn:not(.btn-primary):hover::after,
+.btn:not(.btn-primary):focus-visible::after,
+.theme-btn:hover::after,
+.theme-btn:focus-visible::after,
+.menu-btn:hover::after,
+.menu-btn:focus-visible::after,
+.filter-btn:not(.active):hover::after,
+.filter-btn:not(.active):focus-visible::after,
+.bento-card:hover::after,
+.stack-group:hover::after,
+.contact-box:hover::after,
+.shot-frame:hover::after,
+.shot-frame:focus-visible::after,
+.status-badge:hover::after,
+.tags li:hover::after,
+.badge:hover::after,
+.carousel-caption:hover::after {
+  opacity: 1;
+  animation: aurora-sweep 2.2s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn::after,
+  .btn-primary::before,
+  .theme-btn::after,
+  .menu-btn::after,
+  .filter-btn::after,
+  .filter-btn.active::before,
+  .bento-card::after,
+  .stack-group::after,
+  .contact-box::after,
+  .shot-frame::after,
+  .status-badge::after,
+  .tags li::after,
+  .badge::after,
+  .carousel-caption::after {
+    animation: none !important;
+    transition: none !important;
+  }
 }
 
 /* Sections */
@@ -541,13 +982,13 @@ p:last-child {
   padding: 5px;
   background: var(--panel);
   border: 1px solid var(--border);
-  border-radius: 14px;
+  border-radius: var(--radius);
   width: fit-content;
 }
 
 .filter-btn {
   padding: 8px 16px;
-  border-radius: 10px;
+  border-radius: var(--radius-sm);
   border: none;
   background: transparent;
   color: var(--muted);
@@ -562,9 +1003,9 @@ p:last-child {
 }
 
 .filter-btn.active {
-  background: var(--accent);
+  background: linear-gradient(135deg, var(--aurora-violet), var(--aurora-cyan));
   color: #ffffff;
-  box-shadow: 0 2px 10px var(--accent-glow);
+  box-shadow: var(--shadow-lift), var(--glow-ring);
 }
 
 /* Bento Spotlight Card */
@@ -580,7 +1021,9 @@ p:last-child {
               box-shadow 0.3s, border-color 0.3s, opacity 0.3s ease;
 }
 
-.bento-card::before {
+.bento-card::before,
+.stack-group::before,
+.contact-box::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -601,11 +1044,13 @@ p:last-child {
 
 .bento-card:hover {
   transform: translateY(-4px);
-  border-color: var(--border-highlight);
-  box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.35);
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
+  box-shadow: 0 24px 48px -16px color-mix(in srgb, var(--aurora-violet) 40%, transparent);
 }
 
-.bento-card:hover::before {
+.bento-card:hover::before,
+.stack-group:hover::before,
+.contact-box:hover::before {
   opacity: 1;
 }
 
@@ -614,11 +1059,15 @@ p:last-child {
 }
 
 /* Flagship Card: RAMCES */
+/* The flagship is not a peer of the six grid cards, so it does not share
+   their elevation: bigger radius, aurora-tinted edge, a real shadow. */
 .flagship {
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
   margin-bottom: 32px;
-  border-color: color-mix(in srgb, var(--accent) 30%, var(--border));
+  border-radius: var(--radius-lg);
+  border-color: color-mix(in srgb, var(--aurora-violet) 34%, var(--border));
+  box-shadow: 0 28px 64px -28px color-mix(in srgb, var(--aurora-violet) 55%, transparent);
 }
 
 @media (max-width: 960px) {
@@ -875,7 +1324,10 @@ p:last-child {
   font-size: 1.22rem;
 }
 
+/* One badge. Variants set a hue and nothing else, so a new badge type is a
+   single custom property rather than a third colour scheme. */
 .badge {
+  --badge-hue: var(--badge-neutral);
   font-family: var(--mono);
   font-size: 0.65rem;
   letter-spacing: 0.06em;
@@ -883,25 +1335,14 @@ p:last-child {
   border-radius: 100px;
   padding: 3px 10px;
   font-weight: 600;
+  color: var(--badge-hue);
+  background: color-mix(in srgb, var(--badge-hue) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--badge-hue) 34%, transparent);
 }
 
-.badge-live {
-  color: var(--emerald);
-  background: var(--emerald-glow);
-  border: 1px solid color-mix(in srgb, var(--emerald) 35%, transparent);
-}
-
-.badge-verified {
-  color: var(--accent-cyan);
-  background: rgba(6, 182, 212, 0.15);
-  border: 1px solid rgba(6, 182, 212, 0.3);
-}
-
-.badge-hardware {
-  color: var(--muted);
-  background: var(--bg-subtle);
-  border: 1px solid var(--border);
-}
+.badge-live { --badge-hue: var(--badge-teal); }
+.badge-verified { --badge-hue: var(--badge-sky); }
+.badge-hardware { --badge-hue: var(--badge-neutral); }
 
 .card-meta {
   font-family: var(--mono);
@@ -911,7 +1352,7 @@ p:last-child {
 }
 
 .inline-link {
-  color: var(--accent);
+  color: var(--link);
   font-weight: 550;
   text-decoration: underline;
   text-underline-offset: 2px;
@@ -1030,10 +1471,17 @@ p:last-child {
 }
 
 .stack-group {
+  position: relative;
+  overflow: hidden;
   background: var(--panel);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 24px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.stack-group:hover {
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
 }
 
 .stack-group h3 {
@@ -1062,16 +1510,12 @@ p:last-child {
   overflow: hidden;
 }
 
-.contact-box::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 320px;
-  height: 320px;
-  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
-  filter: blur(40px);
-  pointer-events: none;
+.contact-box {
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.contact-box:hover {
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
 }
 
 .contact-lead {
@@ -1345,26 +1789,51 @@ p:last-child {
   object-fit: cover;
 }
 
-/* Motion and Accessibility */
-.fade-in {
+/* -------------------------------------------------------------------------
+   Motion and accessibility
+
+   Motion is spent in two places only: one hero entrance on load, and one
+   stagger across the project grid. Everything else on the page arrives
+   without an animation, because a fade-and-slide on every section is noise
+   rather than emphasis.
+   ------------------------------------------------------------------------- */
+
+/* Scoped to html.js so the page is never hidden when scripts do not run.
+   script.js also force-reveals these if the animation CDN fails to load. */
+html.js .reveal {
   opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.fade-in.in {
+html.js .reveal.is-visible {
   opacity: 1;
-  transform: translateY(0);
+}
+
+/* Lenis needs the document to size itself normally. */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .fade-in {
+  html.js .reveal {
     opacity: 1 !important;
     transform: none !important;
-    transition: none !important;
   }
-  .pulse-dot {
+  .pulse-dot,
+  .aurora-band,
+  .nav.stuck::after {
+    animation: none !important;
+  }
+  /* The sweep stops, but the gradient stays: the text keeps its colour. */
+  .aurora-text,
+  .sect-num,
+  .sect-head h2,
+  .stat-val,
+  .nav-name > span:not(.nav-tag),
+  .status-badge > span:not(.pulse-dot) {
     animation: none !important;
   }
   .bento-card, .btn, .shot-frame img, .modal-backdrop, .modal-content {
@@ -1372,5 +1841,40 @@ p:last-child {
   }
   .bento-card:hover {
     transform: none !important;
+  }
+}
+
+/* Without background-clip on text, transparent text is invisible text. */
+@supports not ((background-clip: text) or (-webkit-background-clip: text)) {
+  .aurora-text,
+  .sect-num,
+  .sect-head h2,
+  .stat-val,
+  .nav-name > span:not(.nav-tag),
+  .status-badge > span:not(.pulse-dot) {
+    background-image: none;
+    color: var(--ink);
+    -webkit-text-fill-color: currentColor;
+  }
+  .sect-num { color: var(--accent); }
+}
+
+/* Windows High Contrast overrides the palette but not background-image, so
+   swept text would otherwise disappear entirely. */
+@media (forced-colors: active) {
+  .aurora-text,
+  .sect-num,
+  .sect-head h2,
+  .stat-val,
+  .nav-name > span:not(.nav-tag),
+  .status-badge > span:not(.pulse-dot) {
+    background-image: none;
+    color: CanvasText;
+    -webkit-text-fill-color: currentColor;
+    animation: none;
+  }
+  .aurora,
+  .bg-grid {
+    display: none;
   }
 }
