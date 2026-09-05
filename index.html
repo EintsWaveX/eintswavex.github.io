@@ -1,362 +1,514 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Immanuel Aletheia</title>
-<meta name="description" content="Software engineer working across full-stack web, application development, and embedded systems. Bandung, Indonesia.">
-<meta name="theme-color" content="#07080b">
-<meta property="og:title" content="Immanuel Aletheia">
-<meta property="og:description" content="Software engineer working across full-stack web, application development, and embedded systems.">
+<title>Immanuel Aletheia | Software Engineer</title>
+<meta name="description" content="Software engineer working across full-stack web, low-level systems, and embedded instrumentation. Bandung, Indonesia.">
+<meta name="theme-color" content="#080a0f">
+<meta property="og:title" content="Immanuel Aletheia | Software Engineer">
+<meta property="og:description" content="Software engineer working across full-stack web, low-level systems, and embedded instrumentation.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://eintswavex.github.io/">
+<meta property="og:site_name" content="Immanuel Aletheia">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://eintswavex.github.io/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Immanuel Aletheia | Software Engineer">
+<meta name="twitter:description" content="Software engineer working across full-stack web, low-level systems, and embedded instrumentation.">
+<meta name="twitter:image" content="https://eintswavex.github.io/assets/og-image.png">
+<meta name="twitter:image:alt" content="Portfolio of Immanuel Aletheia, software engineer, Bandung, Indonesia">
+<link rel="canonical" href="https://eintswavex.github.io/">
+<link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./src/style.css">
-<script>document.documentElement.classList.remove('no-js');
-try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Immanuel Eben Haezer Joseph Aletheia",
+  "url": "https://eintswavex.github.io/",
+  "image": "https://eintswavex.github.io/assets/og-image.png",
+  "jobTitle": "Software Engineer",
+  "email": "mailto:nue.immanuel@gmail.com",
+  "address": { "@type": "PostalAddress", "addressLocality": "Bandung", "addressCountry": "ID" },
+  "alumniOf": { "@type": "CollegeOrUniversity", "name": "Telkom University" },
+  "knowsLanguage": ["id", "en"],
+  "knowsAbout": ["Full-stack web development", "FastAPI", "PostgreSQL", "C++", "Embedded systems", "TinyML"],
+  "sameAs": [
+    "https://github.com/EintsWaveX",
+    "https://www.linkedin.com/in/immanuel-eben-haezer-joseph-aletheia-622228289/"
+  ]
+}
+</script>
+<script>
+try {
+  var t = localStorage.getItem('theme');
+  if (t) document.documentElement.setAttribute('data-theme', t);
+} catch (e) {}
+</script>
 </head>
 <body>
 
 <a class="skip" href="#main">Skip to content</a>
 
-<div class="aura" aria-hidden="true"><b></b><b></b><b></b></div>
-<div class="mesh" aria-hidden="true" data-par="-0.18"></div>
+<div class="bg-grid" aria-hidden="true"></div>
+<div class="bg-ambient" aria-hidden="true"></div>
 
 <header class="nav">
   <div class="wrap nav-inner">
-    <a class="nav-name" href="#top">Immanuel Aletheia</a>
-    <nav class="nav-links" aria-label="Sections">
+    <a class="nav-name" href="#top">
+      <span>Immanuel Aletheia</span>
+      <span class="nav-tag">SWE</span>
+    </a>
+    <nav class="nav-links" id="nav-menu" aria-label="Sections">
       <a href="#work">Work</a>
       <a href="#experience">Experience</a>
       <a href="#stack">Stack</a>
       <a href="#contact">Contact</a>
     </nav>
-    <button id="theme" class="theme-btn" type="button" aria-label="Switch colour theme">
-      <svg class="i-sun" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.2 5.2l1.4 1.4M17.4 17.4l1.4 1.4M18.8 5.2l-1.4 1.4M6.6 17.4l-1.4 1.4"/></svg>
-      <svg class="i-moon" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8.2 8.2 0 0 1 9.5 4a8.3 8.3 0 1 0 10.5 10.5z"/></svg>
-    </button>
+    <div class="nav-controls">
+      <button id="theme" class="theme-btn" type="button" aria-label="Switch color theme">
+        <svg class="i-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.2 5.2l1.4 1.4M17.4 17.4l1.4 1.4M18.8 5.2l-1.4 1.4M6.6 17.4l-1.4 1.4"/></svg>
+        <svg class="i-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8.2 8.2 0 0 1 9.5 4a8.3 8.3 0 1 0 10.5 10.5z"/></svg>
+      </button>
+      <button id="menu-btn" class="menu-btn" type="button" aria-label="Toggle navigation menu" aria-expanded="false">
+        <svg class="i-menu" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"></line><line x1="4" y1="12" x2="20" y2="12"></line><line x1="4" y1="17" x2="20" y2="17"></line></svg>
+        <svg class="i-close" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
   </div>
 </header>
 
 <main id="main">
 
-<section id="top" class="hero wrap">
-  <p class="eyebrow r"><span class="dot"></span> Bandung, Indonesia</p>
-  <h1 class="r d1">Immanuel Eben <span class="brk sheen">Haezer Joseph Aletheia</span></h1>
-  <p class="lead r d2">
-    Software engineer working across full-stack web, application development,
-    and embedded systems. Currently building an asset-management platform for
+<section id="top" class="hero wrap fade-in">
+  <div class="status-badge">
+    <span class="pulse-dot"></span>
+    <span>Open to SWE internships now, full-time from Oct 2027</span>
+  </div>
+  <h1><span class="hero-line">Immanuel Eben Haezer</span> <span class="hero-line hero-gradient">Joseph Aletheia</span></h1>
+  <p class="lead">
+    Software engineer working across <strong>full-stack web</strong>, <strong>low-level systems</strong>,
+    and <strong>embedded instrumentation</strong>. Recently shipped an asset-management platform for
     <strong>PT Kereta Api Indonesia</strong>, the national railway operator, and
-    finishing a degree in Electrical Engineering.
+    completing an Electrical Engineering degree at Telkom University.
+    I want the web and application work to be the job, with the hardware background as the bonus.
   </p>
-  <div class="cta r d3">
+  <p class="hero-meta">Bandung, Indonesia (UTC+7). Open to remote, hybrid, and relocation.</p>
+  <div class="hero-cta">
     <a class="btn btn-primary" href="#work">See the work</a>
-    <a class="btn" href="https://github.com/EintsWaveX" target="_blank" rel="noopener">GitHub</a>
-    <a class="btn" href="https://www.linkedin.com/in/immanuel-eben-haezer-joseph-aletheia-622228289/" target="_blank" rel="noopener">LinkedIn</a>
-    <a class="btn" href="./src/CV_Immanuel_Eben_Haezer_Joseph_Aletheia.pdf">Curriculum vitae</a>
+    <button id="copy-email-btn" class="btn" type="button" aria-label="Copy email address to clipboard">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+      <span>Copy Email</span>
+    </button>
+    <a class="btn" href="https://github.com/EintsWaveX" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+      <span>GitHub</span>
+    </a>
+    <a class="btn" href="https://www.linkedin.com/in/immanuel-eben-haezer-joseph-aletheia-622228289/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.64 1.64 0 1 0-.02-3.28 1.64 1.64 0 0 0 .02 3.28m1.4 9.74v-8.37H5.06v8.37h2.8z"/></svg>
+      <span>LinkedIn</span>
+    </a>
+    <a class="btn" href="./src/CV_Immanuel_Eben_Haezer_Joseph_Aletheia.pdf" target="_blank">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+      <span>Curriculum Vitae</span>
+    </a>
   </div>
 </section>
 
-<section id="work" class="wrap sect">
-  <div class="sect-head r">
-    <span class="label">01</span>
-    <h2>Selected work</h2>
+<section id="work" class="wrap sect fade-in">
+  <div class="sect-head">
+    <div class="sect-title-group">
+      <span class="sect-num">01</span>
+      <h2>Selected Work</h2>
+    </div>
+    <p id="filter-status" class="visually-hidden" role="status" aria-live="polite"></p>
+    <div class="filter-bar" role="group" aria-label="Filter projects by domain">
+      <button class="filter-btn active" type="button" data-filter="all" aria-pressed="true">All <span class="filter-count"></span></button>
+      <button class="filter-btn" type="button" data-filter="web" aria-pressed="false">Full-Stack Web <span class="filter-count"></span></button>
+      <button class="filter-btn" type="button" data-filter="systems" aria-pressed="false">Systems &amp; C++ <span class="filter-count"></span></button>
+      <button class="filter-btn" type="button" data-filter="embedded" aria-pressed="false">Embedded &amp; IoT <span class="filter-count"></span></button>
+    </div>
   </div>
 
-  <article class="feature r">
-    <div class="feature-top">
-      <div class="feature-body">
-        <p class="kicker">Current focus</p>
+  <!-- Flagship Card: RAMCES -->
+  <article class="bento-card flagship" data-domain="web">
+    <div class="flagship-body">
+      <div>
+        <div class="kicker-row">
+          <span class="kicker">Shipped v1.0.1 / Jul 2026 - Present</span>
+          <span class="badge badge-live">Enterprise Fleet</span>
+        </div>
         <h3>RAMCES</h3>
-        <p class="feature-sub">Asset management and warehouse control for PT KAI's Track &amp; Bridge Division</p>
-        <p>
-          A full-stack platform tracking light work equipment across the national
-          rail network: gensets, drills, rail grinding machines, track geometry
-          trolleys. It covers registration, field condition reporting,
-          calibration, inter-region transfer, spare-part consumption, and
-          write-off, with role-scoped access so a regional admin sees their
-          region and head office sees everything.
+        <p class="flagship-sub">Asset management &amp; warehouse control for PT KAI Track &amp; Bridge Division</p>
+        <p class="flagship-desc">
+          A full-stack railway platform tracking light work equipment across the national rail network:
+          gensets, drills, rail grinding machines, track geometry trolleys. Deployed against PT KAI's real fleet,
+          <strong>1,121 assets across 104 equipment types and 273 locations in 16 regions nationwide</strong>.
+          Covers registration, field condition reporting, calibration, inter-region transfers, spare-part ledger,
+          and write-off, with role-scoped access so regional admins manage their territory and head office sees everything.
         </p>
-        <p>
-          I built the WebSocket live-update layer, JWT authentication across five
-          region-scoped roles, rate limiting, and the response-compression
-          middleware that cuts a 470 KB payload by roughly 8:1. I also refactored
-          the backend from a single 5,900-line file into eleven domain modules
-          holding a strict no-cyclic-imports rule.
+        <p class="flagship-desc">
+          Engineered the WebSocket live-update layer, JWT authentication across five region-scoped roles,
+          and a durable Postgres rate limiter with progressive CAPTCHA. Response-compression middleware cuts a
+          470 KB JavaScript and 383 KB HTML payload by roughly 8:1. Refactored the backend from a single
+          5,900-line file into eleven domain modules under a no-cyclic-imports rule, and built parity tests
+          keeping the Python and JavaScript filters synchronized. 153 commits, in a team of three.
         </p>
-        <ul class="stats">
-          <li><b>92</b><span>API endpoints</span></li>
-          <li><b>16</b><span>database tables</span></li>
-          <li><b>39k</b><span>lines of code</span></li>
-          <li><b>2</b><span>developers</span></li>
-        </ul>
-        <ul class="tags">
-          <li>Python</li><li>FastAPI</li><li>PostgreSQL</li><li>WebSocket</li><li>JWT</li><li>JavaScript</li>
-        </ul>
-        <div class="links">
-          <a href="https://github.com/EintsWaveX/RAMCES_LightMachinery" target="_blank" rel="noopener">Repository</a>
-        </div>
+        <p class="flagship-desc">
+          Shipped with the handover the client actually needs: an architecture and data-model reference,
+          a production runbook, a security note, a backup and restore procedure, and a 49-screenshot
+          operator manual in Indonesian for the division's own staff.
+          <a class="inline-link" href="https://github.com/EintsWaveX/RAMCES_LightMachinery/tree/HEAD/docs" target="_blank" rel="noopener">Read the documentation set</a>.
+        </p>
       </div>
-      <div class="feature-side" aria-hidden="true">
-        <div class="term">
-          <div class="term-bar"><i></i><i></i><i></i></div>
-          <pre><span class="c1">main.py</span>          <span class="c2">app, middleware, sockets</span>
-<span class="c1">models.py</span>        <span class="c2">16 tables</span>
-<span class="c1">api/</span>
-  deps.py        <span class="c2">auth, roles, region scope</span>
-  realtime.py    <span class="c2">ConnectionManager</span>
-  auth.py        <span class="c2">login, users</span>
-  master.py      <span class="c2">equipment, locations</span>
-  aset.py        <span class="c2">assets, transfers, QR</span>
-  riwayat.py     <span class="c2">history, exports</span>
-  inventaris.py  <span class="c2">parts, stock ledger</span>
-  dashboard.py   <span class="c2">MTBF / MTTR</span>
-<span class="c1">js/</span>               <span class="c2">one module per view</span>
 
-<span class="c3">#</span> <span class="c2">no module in api/ may import main,</span>
-<span class="c3">#</span> <span class="c2">main imports them all to mount routes</span></pre>
-        </div>
+      <div class="stats-grid">
+        <div class="stat-item"><span class="stat-val">1,121</span><span class="stat-lbl">assets under management</span></div>
+        <div class="stat-item"><span class="stat-val">16</span><span class="stat-lbl">regions live nationwide</span></div>
+        <div class="stat-item"><span class="stat-val">122</span><span class="stat-lbl">REST and WebSocket endpoints</span></div>
+        <div class="stat-item"><span class="stat-val">3</span><span class="stat-lbl">engineers on the team</span></div>
+      </div>
+
+      <ul class="tags">
+        <li>Python</li><li>FastAPI</li><li>PostgreSQL</li><li>WebSocket</li><li>JWT</li><li>JavaScript</li>
+      </ul>
+
+      <div class="card-actions">
+        <button class="btn btn-primary btn-sm" type="button" data-open-gallery="ramces">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+          <span>Case study &amp; gallery (7)</span>
+        </button>
+        <a class="btn btn-sm" href="https://github.com/EintsWaveX/RAMCES_LightMachinery" target="_blank" rel="noopener">
+          <span>Repository</span>
+        </a>
       </div>
     </div>
 
-    <div class="gallery">
-      <h4>Running instance</h4>
-      <p class="cap">Captured from the application running locally against a seeded database of 1,121 assets across 58 locations.</p>
-      <div class="shots">
-        <figure>
-          <img src="./assets/shots/ramces-1.png" alt="Spare parts inventory dashboard with stock status and charts" loading="lazy" width="1400" height="788">
-          <figcaption>Inventory dashboard, stock status and movement</figcaption>
-        </figure>
-        <figure>
-          <img src="./assets/shots/ramces-2.png" alt="Asset register listing equipment with status badges" loading="lazy" width="1400" height="788">
-          <figcaption>Asset register, 1,121 records with filters and export</figcaption>
-        </figure>
-        <figure>
-          <img src="./assets/shots/ramces-3.png" alt="Asset history view showing repair and transfer records" loading="lazy" width="1400" height="788">
-          <figcaption>Audit trail, repair, calibration and transfer history</figcaption>
-        </figure>
-      </div>
+    <div class="flagship-preview">
+      <button class="shot-frame" type="button" data-open-gallery="ramces" aria-label="Open the RAMCES case study and screenshot gallery">
+        <img src="./assets/shots/ramces-1.webp" alt="RAMCES readiness matrix dashboard showing equipment status per regional division" loading="lazy" width="1400" height="788">
+        <div class="shot-overlay">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+          <span>Open the case study</span>
+        </div>
+      </button>
+      <button class="shot-frame shot-frame-sub" type="button" data-open-gallery="ramces" aria-label="Open the RAMCES case study at the mobile layout screenshot">
+        <img src="./assets/shots/ramces-3.webp" alt="RAMCES inventory summary with spare-part valuation and 12-month consumption trend" loading="lazy" width="1400" height="788">
+      </button>
+      <p class="shot-note">Deployed against PT KAI's live fleet register. Figures shown are a September 2026 snapshot.</p>
     </div>
   </article>
 
-  <div class="grid">
+  <!-- Project Grid -->
+  <div class="project-grid">
 
-    <article class="card r">
-      <a class="shot" href="https://github.com/EintsWaveX/SkyNES" target="_blank" rel="noopener">
-        <img src="./assets/project/skynes.png" alt="SkyNES" loading="lazy" width="1600" height="900">
-      </a>
-      <div class="card-body">
-        <h3><a href="https://github.com/EintsWaveX/SkyNES" target="_blank" rel="noopener">SkyNES</a> <span class="badge">CPU verified</span></h3>
-        <p>
-          A Nintendo Entertainment System emulator written from scratch in C++.
-          The 6502 CPU core is verified byte for byte against the nestest golden
-          reference trace across all 8,990 instructions, comparing every
-          register, flag, and cycle count at each step. The PPU pipeline runs
-          end to end; sprites and full scroll are not finished, and the handheld
-          it targets is not assembled yet.
+    <!-- Card 1: SkyNES -->
+    <article class="bento-card" data-domain="systems">
+      <button class="card-shot" type="button" data-open-gallery="skynes" aria-label="Open SkyNES verification preview">
+        <img src="./assets/project/skynes.webp" alt="SkyNES Emulator" loading="lazy" width="1600" height="900">
+      </button>
+      <div class="card-content">
+        <div class="card-head">
+          <h3>SkyNES</h3>
+          <span class="badge badge-verified">CPU Verified</span>
+        </div>
+        <p class="card-meta">Jun 2026 - Present / personal project</p>
+        <p class="card-desc">
+          A Nintendo Entertainment System emulator written from scratch in C++, covering the 6502 CPU,
+          the PPU, and cartridge and mapper handling. The CPU core is verified byte-for-byte against the
+          nestest golden reference trace across all 8,990 instructions, comparing every register, flag,
+          and cycle count at each step. The core logic runs end to end on the desktop test harness today.
+          Porting it to a custom ESP32-S3 handheld with a 4.0 inch TFT is underway, and hardware bring-up
+          (display wiring) is still in progress.
         </p>
-        <ul class="tags"><li>C++</li><li>6502</li><li>PPU</li><li>ESP32-S3</li></ul>
-      </div>
-      <div class="gallery">
-        <h4>Verification output</h4>
-        <p class="cap">The desktop harness, run for this page. There is no gameplay capture because the repository ships only the freeware nestest CPU-test ROM, which draws a blank screen by design.</p>
-        <div class="shots" style="grid-template-columns:1fr">
-          <figure>
-            <img src="./assets/shots/skynes-1.png" alt="Terminal output showing all 8,990 CPU steps matching the reference trace" loading="lazy" width="1400" height="542">
-            <figcaption>8,990 steps compared against nestest, all matching</figcaption>
-          </figure>
+        <ul class="tags">
+          <li>C++</li><li>6502</li><li>PPU</li><li>ESP32-S3</li>
+        </ul>
+        <div class="card-actions">
+          <button class="btn btn-sm" type="button" data-open-gallery="skynes">
+            <span>Verification Trace</span>
+          </button>
+          <a class="btn btn-sm" href="https://github.com/EintsWaveX/SkyNES" target="_blank" rel="noopener">
+            <span>Repository</span>
+          </a>
         </div>
       </div>
     </article>
 
-    <article class="card r">
-      <a class="shot" href="https://web-pengmas.vercel.app/" target="_blank" rel="noopener">
-        <img src="./assets/project/air-quality.png" alt="Air Quality Monitoring" loading="lazy" width="1600" height="900">
-      </a>
-      <div class="card-body">
-        <h3><a href="https://web-pengmas.vercel.app/" target="_blank" rel="noopener">Air Quality Monitoring</a> <span class="live">Live</span></h3>
-        <p>
-          A public web dashboard rendering live readings from a five-sensor
-          air-quality station in Sindangkerta village, streamed from the field
-          station through a realtime database. Delivered as a completed
-          community-service initiative, and still publicly deployed.
+    <!-- Card 2: Air Quality Monitoring -->
+    <article class="bento-card" data-domain="web">
+      <button class="card-shot" type="button" data-open-gallery="aqms" aria-label="Open Air Quality Monitoring screenshots">
+        <img src="./assets/project/air-quality.webp" alt="Air Quality Monitoring Dashboard" loading="lazy" width="1600" height="900">
+      </button>
+      <div class="card-content">
+        <div class="card-head">
+          <h3>Air Quality Monitoring</h3>
+          <span class="badge badge-hardware">Deployed</span>
+        </div>
+        <p class="card-meta">Apr 2026 - May 2026 / community service (pengmas)</p>
+        <p class="card-desc">
+          A web dashboard for a five-sensor air-quality station (PM2.5, PM10, O3, CO, NO2) in Sindangkerta
+          village, reading from field hardware through Firebase Realtime Database and rendering the readings
+          for the community. Delivered as a completed community-service initiative; the dashboard is still
+          publicly deployed, though the field station is not currently pushing new readings.
         </p>
-        <ul class="tags"><li>JavaScript</li><li>Vercel</li><li>Firebase</li><li>ESP32</li></ul>
-      </div>
-      <div class="gallery">
-        <h4>Live site</h4>
-        <p class="cap">Captured from the deployed dashboard, showing readings from the station as they arrived.</p>
-        <div class="shots two">
-          <figure>
-            <img src="./assets/shots/aqms-1.png" alt="Air quality dashboard showing five sensor cards with live readings" loading="lazy" width="1400" height="788">
-            <figcaption>Five sensors, live readings and status</figcaption>
-          </figure>
-          <figure>
-            <img src="./assets/shots/aqms-2.png" alt="The same dashboard on a narrow phone viewport" loading="lazy" width="1400" height="788">
-            <figcaption>The same dashboard on a phone</figcaption>
-          </figure>
+        <ul class="tags">
+          <li>JavaScript</li><li>Vercel</li><li>Firebase</li><li>ESP32</li>
+        </ul>
+        <div class="card-actions">
+          <a class="btn btn-primary btn-sm" href="https://web-pengmas.vercel.app/" target="_blank" rel="noopener">
+            <span>Open the dashboard</span>
+            <span class="btn-note">Indonesian UI</span>
+          </a>
+          <button class="btn btn-sm" type="button" data-open-gallery="aqms">
+            <span>Screenshots (2)</span>
+          </button>
         </div>
       </div>
     </article>
 
-    <article class="card r">
-      <a class="shot" href="https://github.com/EintsWaveX/SmartRackMonitoring" target="_blank" rel="noopener">
-        <img src="./assets/project/smart-rack.png" alt="Smart Rack Monitoring" loading="lazy" width="1600" height="900">
-      </a>
-      <div class="card-body">
-        <h3><a href="https://github.com/EintsWaveX/SmartRackMonitoring" target="_blank" rel="noopener">Smart Rack Monitoring</a> <span class="badge">Hardware</span></h3>
-        <p>
-          Both firmware halves of a dual-ESP32 industrial rack monitor, built as
-          a capstone project. An ESP32-S3 drives a 480 by 320 LVGL touchscreen
-          dashboard; a sensor node reads four load cells, one per rack footing,
-          plus an inertial measurement unit over UART. Loads above 200 kg are
-          resolved to within 1 kg per cell, roughly 4 kg across the rack.
-        </p>
-        <ul class="tags"><li>C++</li><li>LVGL</li><li>HX711</li><li>UART</li></ul>
+    <!-- Card 3: Smart Rack Monitoring -->
+    <article class="bento-card" data-domain="embedded">
+      <div class="card-shot">
+        <img src="./assets/project/smart-rack.webp" alt="Smart Rack Monitoring" loading="lazy" width="1600" height="900">
       </div>
-    </article>
-
-    <article class="card r">
-      <a class="shot" href="https://github.com/EintsWaveX/IWSS_EL4705-04_IoTxAI" target="_blank" rel="noopener">
-        <img src="./assets/project/iwss.png" alt="Intelligent Waste Sorting" loading="lazy" width="1600" height="900">
-      </a>
-      <div class="card-body">
-        <h3><a href="https://github.com/EintsWaveX/IWSS_EL4705-04_IoTxAI" target="_blank" rel="noopener">Intelligent Waste Sorting</a> <span class="badge">Hardware</span></h3>
-        <p>
-          A lightweight convolutional network, quantized to eight-bit integers
-          and run on an ESP32-CAM, classifies plastic, paper, and metal from a
-          live camera feed in 10 to 150 ms at 85 to 89 percent accuracy. A
-          servo platform then sorts the item, and device state syncs to a
-          companion Android app.
+      <div class="card-content">
+        <div class="card-head">
+          <h3>Smart Rack Monitoring</h3>
+          <span class="badge badge-hardware">Hardware</span>
+        </div>
+        <p class="card-meta">Jan 2026 - Jun 2026 / capstone design, 5 credits</p>
+        <p class="card-desc">
+          Both firmware halves of a dual-ESP32 industrial rack monitor capstone project.
+          An ESP32-S3 drives a 480x320 LVGL touchscreen dashboard; a sensor node reads four load cells
+          (one per rack footing) plus an inertial measurement unit over UART.
+          Loads above 200 kg are resolved to within 1 kg per cell, approximately 4 kg across the entire rack.
         </p>
-        <ul class="tags"><li>TensorFlow</li><li>TFLite Micro</li><li>ESP32-CAM</li><li>Android</li></ul>
-      </div>
-      <div class="gallery">
-        <h4>The Android app</h4>
-        <p class="cap">Captured from the companion app while the sorter was running, classifying a real item on the device rather than in a simulator.</p>
-        <div class="shots wide">
-          <figure>
-            <img src="./assets/shots/iwss-1.jpeg" alt="Live camera feed classifying a plastic punnet as PLASTIC at 99.22 percent confidence, with per-class bars and a 16 ms inference time" loading="lazy" width="1600" height="717">
-            <figcaption>Live classification, 16 ms inference</figcaption>
-          </figure>
-          <figure>
-            <img src="./assets/shots/iwss-2.jpeg" alt="Line graph of per-class confidence for plastic, paper and metal across 100 consecutive inferences" loading="lazy" width="1600" height="717">
-            <figcaption>Confidence across 100 inferences</figcaption>
-          </figure>
-          <figure>
-            <img src="./assets/shots/iwss-3.jpeg" alt="Settings screen of the waste sorting companion app" loading="lazy" width="1600" height="717">
-            <figcaption>Device and model settings</figcaption>
-          </figure>
+        <ul class="tags">
+          <li>C++</li><li>LVGL</li><li>HX711</li><li>UART</li>
+        </ul>
+        <div class="card-actions">
+          <a class="btn btn-sm" href="https://github.com/EintsWaveX/SmartRackMonitoring" target="_blank" rel="noopener">
+            <span>Repository</span>
+          </a>
         </div>
       </div>
     </article>
 
-    <article class="card r">
-      <a class="shot" href="https://github.com/EintsWaveX/EL4705_09_TugasBesarSNAxSKD" target="_blank" rel="noopener">
-        <img src="./assets/project/pid.png" alt="PID Climate Control" loading="lazy" width="1600" height="900">
-      </a>
-      <div class="card-body">
-        <h3><a href="https://github.com/EintsWaveX/EL4705_09_TugasBesarSNAxSKD" target="_blank" rel="noopener">PID Climate Control</a> <span class="badge">Hardware</span></h3>
-        <p>
-          A closed-loop temperature and humidity controller for a humidified
-          enclosure. A reverse-acting PID loop modulates a fan blower against a
-          water pump to hold setpoints across a 24 to 32 degree range, with a
-          touchscreen interface graphing temperature, humidity, and controller
-          output over a rolling history.
+    <!-- Card 4: Intelligent Waste Sorting -->
+    <article class="bento-card" data-domain="embedded">
+      <button class="card-shot" type="button" data-open-gallery="iwss" aria-label="Open Waste Sorting inference screenshots">
+        <img src="./assets/project/iwss.webp" alt="Intelligent Waste Sorting" loading="lazy" width="1600" height="900">
+      </button>
+      <div class="card-content">
+        <div class="card-head">
+          <h3>Intelligent Waste Sorting</h3>
+          <span class="badge badge-hardware">TinyML</span>
+        </div>
+        <p class="card-meta">Nov 2025 - Dec 2025 / team of three</p>
+        <p class="card-desc">
+          A lightweight convolutional network quantized to 8-bit integers and executed on an ESP32-CAM.
+          Classifies plastic, paper, and metal from a live camera feed in 10 to 150 ms, at 85 to 89 percent
+          accuracy across four input resolutions, reaching 91 percent on plastic and 96 percent on paper.
+          A servo-driven rotating platform then sorts the item into its bin, with device state synced to a
+          companion Android app at 50 to 150 ms latency. Owned the model, the firmware, and the app.
         </p>
-        <ul class="tags"><li>C++</li><li>PID</li><li>DHT22</li><li>TFT</li></ul>
+        <ul class="tags">
+          <li>TensorFlow</li><li>TFLite Micro</li><li>ESP32-CAM</li><li>Android</li>
+        </ul>
+        <div class="card-actions">
+          <button class="btn btn-sm" type="button" data-open-gallery="iwss">
+            <span>Inference Data (3)</span>
+          </button>
+          <a class="btn btn-sm" href="https://github.com/EintsWaveX/IWSS_EL4705-04_IoTxAI" target="_blank" rel="noopener">
+            <span>Repository</span>
+          </a>
+        </div>
       </div>
     </article>
 
-    <article class="card r">
-      <a class="shot" href="https://github.com/EintsWaveX/FinancialAM" target="_blank" rel="noopener">
-        <img src="./assets/project/financialam.png" alt="FinancialAM" loading="lazy" width="1600" height="900">
-      </a>
-      <div class="card-body">
-        <h3><a href="https://github.com/EintsWaveX/FinancialAM" target="_blank" rel="noopener">FinancialAM</a></h3>
-        <p>
-          A personal finance manager built as a console application in 8,101
-          lines of C, using nothing but the standard library and the Win32 API.
-          Menus, input validation, the file format, account storage, and the
-          on-screen histograms are all written by hand.
+    <!-- Card 5: PID Climate Control -->
+    <article class="bento-card" data-domain="embedded">
+      <div class="card-shot">
+        <img src="./assets/project/pid.webp" alt="PID Climate Control" loading="lazy" width="1600" height="900">
+      </div>
+      <div class="card-content">
+        <div class="card-head">
+          <h3>PID Climate Control</h3>
+          <span class="badge badge-hardware">Control Loop</span>
+        </div>
+        <p class="card-meta">Apr 2025 - Jun 2025 / joint coursework project</p>
+        <p class="card-desc">
+          A closed-loop temperature and humidity controller for a humidified enclosure. A DHT22 feeds a
+          reverse-acting PID loop (Kp 100, Ki 0.1, Kd 5.0) that modulates a fan blower on 25 kHz PWM against
+          a water pump on 1 kHz PWM, holding setpoints across a 24 to 32 degree Celsius range. Built the
+          3.2 inch TFT touch interface, including a rolling 210-sample graph of temperature, humidity,
+          and PID output.
         </p>
-        <ul class="tags"><li>C</li><li>Win32</li><li>POSIX</li></ul>
+        <ul class="tags">
+          <li>C++</li><li>PID</li><li>DHT22</li><li>TFT</li>
+        </ul>
+        <div class="card-actions">
+          <a class="btn btn-sm" href="https://github.com/EintsWaveX/EL4705_09_TugasBesarSNAxSKD" target="_blank" rel="noopener">
+            <span>Repository</span>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 6: FinancialAM -->
+    <article class="bento-card" data-domain="systems web">
+      <div class="card-shot">
+        <img src="./assets/project/financialam.webp" alt="FinancialAM" loading="lazy" width="1600" height="900">
+      </div>
+      <div class="card-content">
+        <div class="card-head">
+          <h3>FinancialAM</h3>
+          <span class="badge badge-verified">C &amp; Web</span>
+        </div>
+        <p class="card-meta">Updated Aug 2026 / personal project</p>
+        <p class="card-desc">
+          A personal finance manager built in two synchronized builds: an original 8,101-line C console program
+          using standard library and Win32, and a modern client-side browser application in React, TypeScript,
+          and IndexedDB. Integer minor-unit arithmetic, multi-currency conversions with historical rate locks,
+          and zero server dependency.
+        </p>
+        <ul class="tags">
+          <li>C</li><li>React</li><li>TypeScript</li><li>IndexedDB</li>
+        </ul>
+        <div class="card-actions">
+          <a class="btn btn-primary btn-sm" href="https://eintswavex.github.io/FinancialAM/" target="_blank" rel="noopener">
+            <span>Live Web App</span>
+          </a>
+          <a class="btn btn-sm" href="https://github.com/EintsWaveX/FinancialAM" target="_blank" rel="noopener">
+            <span>Repository</span>
+          </a>
+        </div>
       </div>
     </article>
 
   </div>
 </section>
 
-<section id="experience" class="wrap sect">
-  <div class="sect-head r">
-    <span class="label">02</span>
-    <h2>Experience</h2>
+<section id="experience" class="wrap sect fade-in">
+  <div class="sect-head">
+    <div class="sect-title-group">
+      <span class="sect-num">02</span>
+      <h2>Experience</h2>
+    </div>
   </div>
   <ol class="timeline">
-    <li class="r">
-      <div class="when">Jul 2026, now</div>
-      <div class="what">
-        <h3>Software Engineering Intern, Fullstack</h3>
-        <p class="org">PT KAI (Kereta Api Indonesia), Track &amp; Bridge Division</p>
-        <p>Building RAMCES end to end, from the data model through to the screen.</p>
+    <li class="timeline-item">
+      <div class="timeline-date">Jul 2026 - Present</div>
+      <div>
+        <div class="timeline-role">Software Engineering Intern, Fullstack</div>
+        <div class="timeline-org">PT KAI (Kereta Api Indonesia), Track &amp; Bridge Division</div>
+        <div class="timeline-desc">Shipped RAMCES v1.0.1 end-to-end, from the data model and WebSocket live layer through to the browser interface, in a team of three. Now running against the division's real fleet register.</div>
       </div>
     </li>
-    <li class="r">
-      <div class="when">Feb 2024, now</div>
-      <div class="what">
-        <h3>Research Assistant, Programming Division</h3>
-        <p class="org">LumiaTech Innovations Research Laboratory, Telkom University</p>
-        <p>Shipped a railway-track anomaly detection system for PT KAI using image segmentation on trackside video. Built a multi-view reconstruction module recovering several usable viewpoints from a single fisheye camera.</p>
+    <li class="timeline-item">
+      <div class="timeline-date">Feb 2024 - Present</div>
+      <div>
+        <div class="timeline-role">Research Assistant, Programming Division</div>
+        <div class="timeline-org">LumiaTech Innovations Research Laboratory, Telkom University</div>
+        <div class="timeline-desc">Shipped a railway-track anomaly detection system for PT KAI using OpenCV image segmentation on trackside video to flag defects along the rail corridor; completed and accepted, in a team of three. Built a multi-view reconstruction module recovering several usable viewpoints from a single monocular fisheye camera.</div>
       </div>
     </li>
-    <li class="r">
-      <div class="when">Sep 2024, now</div>
-      <div class="what">
-        <h3>Practicum Assistant and Division Coordinator</h3>
-        <p class="org">Basic Computing Laboratory and IRIS Laboratory, Telkom University</p>
-        <p>Write C and IoT programming problems, test cases, and grading rubrics each semester. Lead the Assignment and Task Committee.</p>
+  </ol>
+
+  <h3 class="timeline-group">Teaching &amp; academic leadership</h3>
+  <ol class="timeline">
+    <li class="timeline-item">
+      <div class="timeline-date">Sep 2024 - Present</div>
+      <div>
+        <div class="timeline-role">Practicum Assistant &amp; Division Coordinator</div>
+        <div class="timeline-org">Basic Computing Laboratory (C) and IRIS Laboratory (IoT), Telkom University</div>
+        <div class="timeline-desc">Author C and IoT programming problems, test cases, and grading rubrics each semester. Lead the Assignment and Task Committee, and ran the academic track of DLOR 2025 assistant recruitment.</div>
       </div>
     </li>
-    <li class="r">
-      <div class="when">May 2025, Jan 2026</div>
-      <div class="what">
-        <h3>Lecturer's Assistant</h3>
-        <p class="org">Digital Engineering and Calculus I, Telkom University</p>
-        <p>Taught and assessed two undergraduate courses, designing quizzes, examinations, and projects.</p>
+    <li class="timeline-item">
+      <div class="timeline-date">May 2025 - Jan 2026</div>
+      <div>
+        <div class="timeline-role">Lecturer's Assistant</div>
+        <div class="timeline-org">Digital Engineering and Calculus I, Telkom University</div>
+        <div class="timeline-desc">Taught and assessed two undergraduate courses, designing quizzes, examinations, and technical projects.</div>
+      </div>
+    </li>
+  </ol>
+
+  <h3 class="timeline-group">Education</h3>
+  <ol class="timeline">
+    <li class="timeline-item">
+      <div class="timeline-date">Expected Sep 2027</div>
+      <div>
+        <div class="timeline-role">Bachelor of Engineering, Electrical Engineering</div>
+        <div class="timeline-org">Telkom University, Bandung, Indonesia</div>
+        <div class="timeline-desc">GPA 3.77 / 4.00, 125 of 145 credits completed. Relevant coursework: Digital and Microcomputer Engineering, Artificial Intelligence and Machine Learning, Embedded Systems, Control Systems, Internet of Things.</div>
       </div>
     </li>
   </ol>
 </section>
 
-<section id="stack" class="wrap sect">
-  <div class="sect-head r">
-    <span class="label">03</span>
-    <h2>Stack</h2>
+<section id="stack" class="wrap sect fade-in">
+  <div class="sect-head">
+    <div class="sect-title-group">
+      <span class="sect-num">03</span>
+      <h2>Technical Stack</h2>
+    </div>
   </div>
-  <dl class="stack r">
-    <div><dt>Languages</dt><dd>Python, JavaScript, C, C++, SQL, HTML and CSS</dd></div>
-    <div><dt>Web and backend</dt><dd>FastAPI, REST API design, WebSocket, JWT authentication, rate limiting, relational database design, Firebase, Vercel</dd></div>
-    <div><dt>Application and ML</dt><dd>Android Studio, LVGL, OpenCV, TensorFlow and TFLite Micro, image segmentation</dd></div>
-    <div><dt>Embedded</dt><dd>ESP32 and ESP32-S3, Arduino and PlatformIO, MQTT, UART, I2C, sensor and actuator integration, PID control</dd></div>
-    <div><dt>Tools</dt><dd>Git, Linux, Visual Studio Code, KiCad, Proteus, MATLAB and Simulink</dd></div>
-    <div><dt>Languages spoken</dt><dd>Indonesian (native), English (professional working), Mandarin and Japanese (elementary)</dd></div>
-  </dl>
+  <div class="stack-grid">
+    <div class="stack-group">
+      <h3>Core Languages</h3>
+      <p>Python, JavaScript, TypeScript, C, C++, SQL, HTML, CSS</p>
+    </div>
+    <div class="stack-group">
+      <h3>Web &amp; Backend</h3>
+      <p>FastAPI, REST API design, WebSocket, JWT authentication, rate limiting, relational database design, PostgreSQL, Firebase, Vercel</p>
+    </div>
+    <div class="stack-group">
+      <h3>Application &amp; Machine Learning</h3>
+      <p>Android Studio, LVGL, OpenCV, TensorFlow, TFLite Micro, image segmentation</p>
+    </div>
+    <div class="stack-group">
+      <h3>Embedded &amp; Systems</h3>
+      <p>ESP32 and ESP32-S3, Arduino, PlatformIO, MQTT, UART, I2C, sensor/actuator integration, PID control</p>
+    </div>
+    <div class="stack-group">
+      <h3>Engineering Tools</h3>
+      <p>Git, Linux, Visual Studio Code, KiCad, Proteus, MATLAB, Simulink</p>
+    </div>
+    <div class="stack-group">
+      <h3>Spoken Languages</h3>
+      <p>Indonesian (native), English (professional working proficiency), Mandarin &amp; Japanese (elementary)</p>
+    </div>
+  </div>
 </section>
 
-<section id="contact" class="wrap sect">
-  <div class="sect-head r">
-    <span class="label">04</span>
-    <h2>Get in touch</h2>
+<section id="contact" class="wrap sect fade-in">
+  <div class="sect-head">
+    <div class="sect-title-group">
+      <span class="sect-num">04</span>
+      <h2>Get In Touch</h2>
+    </div>
   </div>
-  <div class="r">
+  <div class="contact-box">
     <p class="contact-lead">
-      Final-year Electrical Engineering student at Telkom University, expecting
-      to graduate in September 2027. Open to software engineering work in web
-      and application development.
+      Final-year Electrical Engineering student at Telkom University, graduating September 2027.
+      Looking for a software engineering internship now, and full-time work from October 2027, in web or
+      application development where the hardware background counts as a bonus rather than the job itself.
+      Based in Bandung, Indonesia (UTC+7); open to remote, hybrid, and relocation.
     </p>
-    <div class="cta">
-      <a class="btn btn-primary" href="mailto:nue.immanuel@gmail.com">nue.immanuel@gmail.com</a>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="mailto:nue.immanuel@gmail.com">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        <span>nue.immanuel@gmail.com</span>
+      </a>
       <a class="btn" href="https://github.com/EintsWaveX" target="_blank" rel="noopener">GitHub</a>
       <a class="btn" href="https://www.linkedin.com/in/immanuel-eben-haezer-joseph-aletheia-622228289/" target="_blank" rel="noopener">LinkedIn</a>
     </div>
@@ -366,9 +518,36 @@ try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribu
 </main>
 
 <footer class="wrap foot">
-  <p>Immanuel Eben Haezer Joseph Aletheia</p>
+  <p>&copy; 2026 Immanuel Eben Haezer Joseph Aletheia</p>
   <p>Bandung, Indonesia</p>
 </footer>
+
+<!-- Toast Notification -->
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<!-- Accessible Case Study & Gallery Modal -->
+<div id="project-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-title-text">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="modal-title">
+        <h3 id="modal-title-text">Project Overview</h3>
+        <p id="modal-subtitle-text">Project Architecture &amp; Verification</p>
+      </div>
+      <button id="modal-close-btn" class="modal-close-btn" type="button" aria-label="Close modal dialog">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="carousel-viewport">
+        <button id="carousel-prev-btn" class="carousel-nav-btn carousel-prev" type="button" aria-label="Previous screenshot">&#10094;</button>
+        <img id="carousel-image" src="" alt="">
+        <button id="carousel-next-btn" class="carousel-nav-btn carousel-next" type="button" aria-label="Next screenshot">&#10095;</button>
+      </div>
+      <p id="modal-hint" class="modal-hint">Click the screenshot to open it full size. Use the arrow keys to move through the gallery.</p>
+      <div id="carousel-caption-text" class="carousel-caption"></div>
+      <div id="carousel-thumbs-container" class="carousel-thumbs"></div>
+      <ul id="case-notes" class="case-notes"></ul>
+    </div>
+  </div>
+</div>
 
 <script src="./src/script.js"></script>
 </body>
