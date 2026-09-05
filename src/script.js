@@ -1,7 +1,7 @@
 /* =========================================================================
    Immanuel Aletheia, Personal Site Scripts
-   Theme handling, Bento spotlight tracking, domain filtering,
-   quick copy email, and accessible case study modal.
+   Theme handling, smooth scroll, spotlight tracking, domain filtering,
+   quick copy email, reveal choreography, and accessible case study modal.
    No em dashes and no en dashes used anywhere.
    ========================================================================= */
 
@@ -10,6 +10,11 @@
 
   var root = document.documentElement;
   var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Both are loaded from a CDN, so nothing below may assume they exist. */
+  var M = window.Motion;
+  var hasMotion = !prefersReducedMotion && M && typeof M.animate === 'function';
+  var lenis = null;
 
   /* ---- 1. Theme Management ---- */
   var themeBtn = document.getElementById('theme');
@@ -26,7 +31,7 @@
       root.setAttribute('data-theme', next);
       var meta = document.querySelector('meta[name="theme-color"]');
       if (meta) {
-        meta.setAttribute('content', next === 'dark' ? '#080a0f' : '#f8fafc');
+        meta.setAttribute('content', next === 'dark' ? '#05060f' : '#f6f8ff');
       }
       try {
         localStorage.setItem('theme', next);
@@ -36,7 +41,31 @@
     });
   }
 
-  /* ---- 2. Navigation & Mobile Menu ---- */
+  /* ---- 2. Smooth Scrolling ----
+     Lenis owns the scroll position, so in-page anchors have to go through
+     it rather than through the browser. It is not started under reduced
+     motion, and the CSS falls back to native scrolling when it is absent. */
+  if (!prefersReducedMotion && typeof window.Lenis === 'function') {
+    lenis = new window.Lenis({ duration: 1.05, smoothWheel: true });
+    (function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    })(performance.now());
+
+    document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        var id = link.getAttribute('href');
+        if (!id || id === '#') return;
+        var target = document.querySelector(id);
+        if (!target) return;
+        e.preventDefault();
+        /* Clears the 68px sticky header so the heading is not hidden. */
+        lenis.scrollTo(target, { offset: -76 });
+      });
+    });
+  }
+
+  /* ---- 3. Navigation & Mobile Menu ---- */
   var nav = document.querySelector('.nav');
   var menuBtn = document.getElementById('menu-btn');
   var navMenu = document.getElementById('nav-menu');
@@ -74,9 +103,9 @@
     });
   }
 
-  /* ---- 3. Bento Spotlight Cursor Tracking ---- */
+  /* ---- 4. Spotlight Cursor Tracking ---- */
   if (!prefersReducedMotion) {
-    var cards = document.querySelectorAll('.bento-card');
+    var cards = document.querySelectorAll('.bento-card, .stack-group, .contact-box');
     cards.forEach(function (card) {
       card.addEventListener('mousemove', function (e) {
         var rect = card.getBoundingClientRect();
@@ -92,7 +121,7 @@
     });
   }
 
-  /* ---- 4. Domain Filtering ---- */
+  /* ---- 5. Domain Filtering ---- */
   var filterButtons = document.querySelectorAll('.filter-btn');
   var projectCards = document.querySelectorAll('.bento-card[data-domain]');
   var filterStatus = document.getElementById('filter-status');
@@ -141,7 +170,7 @@
     });
   });
 
-  /* ---- 5. Quick Copy Email with Toast Feedback ---- */
+  /* ---- 6. Quick Copy Email with Toast Feedback ---- */
   var copyEmailBtn = document.getElementById('copy-email-btn');
   var toast = document.getElementById('toast');
   var toastTimer = null;
@@ -190,7 +219,7 @@
     });
   }
 
-  /* ---- 6. Project Case Study & Gallery Modal ---- */
+  /* ---- 7. Project Case Study & Gallery Modal ---- */
   var projectGalleries = {
     ramces: {
       title: 'RAMCES v1.0.1 (PT Kereta Api Indonesia)',
@@ -344,6 +373,8 @@
     modalBackdrop.classList.add('open');
     modalBackdrop.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+    /* Lenis drives its own scroll position and ignores body overflow. */
+    if (lenis) lenis.stop();
 
     if (closeBtn) closeBtn.focus();
   }
@@ -353,6 +384,7 @@
     modalBackdrop.classList.remove('open');
     modalBackdrop.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
+    if (lenis) lenis.start();
     carouselImg.src = '';
     currentGallery = null;
     if (lastFocusedElement) lastFocusedElement.focus();
@@ -422,21 +454,66 @@
     });
   });
 
-  /* ---- 7. Scroll Reveal Fade-in ---- */
-  var fadeElements = document.querySelectorAll('.fade-in');
-  if (!('IntersectionObserver' in window) || prefersReducedMotion) {
-    fadeElements.forEach(function (el) { el.classList.add('in'); });
-  } else {
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { rootMargin: '0px 0px -6% 0px', threshold: 0.05 });
+  /* ---- 8. Reveal Choreography ----
+     Motion is spent twice: the hero assembling on load, and the project
+     grid arriving in sequence. Sections below that simply appear, because
+     an identical fade on every one of them reads as noise. */
 
-    fadeElements.forEach(function (el) { observer.observe(el); });
+  var EASE = [0.16, 1, 0.3, 1];
+  var RISE = ['translateY(18px)', 'translateY(0px)'];
+
+  function show(el) {
+    el.classList.add('is-visible');
   }
+
+  function showAll() {
+    document.querySelectorAll('.reveal').forEach(show);
+  }
+
+  if (!hasMotion) {
+    /* No animation runtime, or the visitor asked for no motion. Either way
+       the content must be on screen, not stranded at opacity 0. */
+    showAll();
+  } else {
+    /* The headline is the largest element on the page, so it is never
+       faded in: an LCP element animating up from opacity 0 does not count
+       as painted until the fade ends, which measured as a 200ms to 944ms
+       LCP regression. It rises on transform alone, which paints at once. */
+    var heroTitle = document.querySelector('.hero h1');
+    if (heroTitle) {
+      M.animate(heroTitle, { transform: RISE }, { duration: 0.7, easing: EASE });
+    }
+
+    var heroItems = document.querySelectorAll('.hero .reveal');
+    heroItems.forEach(show);
+    M.animate(
+      heroItems,
+      { opacity: [0, 1], transform: RISE },
+      { duration: 0.7, delay: M.stagger(0.08, { start: 0.08 }), easing: EASE }
+    );
+
+    M.inView('.flagship', function (info) {
+      show(info.target);
+      M.animate(info.target, { opacity: [0, 1], transform: RISE }, { duration: 0.7, easing: EASE });
+    }, { amount: 0.08 });
+
+    M.inView('.project-grid', function () {
+      var cards = document.querySelectorAll('.project-grid .reveal');
+      cards.forEach(show);
+      M.animate(
+        cards,
+        { opacity: [0, 1], transform: RISE },
+        { duration: 0.6, delay: M.stagger(0.07), easing: EASE }
+      );
+    }, { amount: 0.02 });
+
+    /* Insurance. If any observer never fires, nothing stays invisible. */
+    setTimeout(showAll, 3000);
+  }
+
+  /* Scroll-driven motion lives entirely in CSS (see star-drift in style.css),
+     so there is no scroll listener here and nothing runs per frame. The
+     aurora itself is deliberately fixed: the horizon is the reference the
+     stars drift against. */
 
 }());
